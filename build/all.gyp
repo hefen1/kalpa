@@ -11,6 +11,7 @@
       'dependencies': [
         'some.gyp:*',
         '../base/base.gyp:*',
+        '../skia/skia.gyp:*',        
         '../testing/gmock.gyp:*',
         '../testing/gtest.gyp:*',
         '../third_party/zlib/zlib.gyp:*',

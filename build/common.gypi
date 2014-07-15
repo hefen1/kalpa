@@ -347,7 +347,7 @@
       # 1 enables it fully, and 2 enables only the codepath to generate a
       # Metafile (e.g. usually a PDF or EMF) and disables print preview, cloud
       # print, UI, etc.
-      'enable_printing%': 1,
+      'enable_printing%': 0,
 
       # Set the version of CLD.
       #   0: Don't specify the version. This option is for the Finch testing.
@@ -1052,7 +1052,7 @@
 
     # Enable a variable used elsewhere throughout the GYP files to determine
     # whether to compile in the sources for the GPU plugin / process.
-    'enable_gpu%': 1,
+    'enable_gpu%': 0,
 
     # .gyp files or targets should set chromium_code to 1 if they build
     # Chromium-specific code, as opposed to external code.  This variable is

@@ -3,8 +3,13 @@
 *.pyc
 .gclient_entries
 #generate folder
-Debug/
-Release/
+/build/Debug
+/build/Release
+/build/Debug_x64
+/build/Release_x64
+/build/User Data
+/build/util/LASTCHANGE
+/build/util/LASTCHANGE.blink
 #visual studio files
 *.vcproj
 *.vcxproj

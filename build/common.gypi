@@ -4438,6 +4438,7 @@
           '<(windows_sdk_path)/Include/winrt',
           '$(VSInstallDir)/VC/atlmfc/include',
         ],
+        'msvs_cygwin_shell': 0,
         'msvs_cygwin_dirs': ['<(DEPTH)/third_party/cygwin'],
         'msvs_disabled_warnings': [4351, 4355, 4396, 4503, 4819,
           # TODO(maruel): These warnings are level 4. They will be slowly

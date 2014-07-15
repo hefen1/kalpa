@@ -31,3 +31,4 @@
 DEPS
 OWNERS
 PRESUBMIT.py
+*.isolate

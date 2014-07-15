@@ -1,0 +1,28 @@
+#svn file
+.svn/
+*.pyc
+.gclient_entries
+#generate folder
+Debug/
+Release/
+#visual studio files
+*.vcproj
+*.vcxproj
+*.vcxproj.filters
+*.sln
+*.ncb
+*.suo
+*.user
+*.ipch
+*.obj
+*.lib
+*.pdb
+*.sdf
+*.opensdf
+*.aps
+#generate log file
+*.log
+#chromium file
+DEPS
+OWNERS
+PRESUBMIT.py

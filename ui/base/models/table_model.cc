@@ -4,7 +4,7 @@
 
 #include "ui/base/models/table_model.h"
 
-#include "base/i18n/string_compare.h"
+//#include "base/i18n/string_compare.h"
 #include "base/logging.h"
 #include "ui/base/l10n/l10n_util.h"
 #include "ui/gfx/image/image_skia.h"

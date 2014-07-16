@@ -10,9 +10,9 @@
 #include <string>
 #include <vector>
 
-#include "base/i18n/string_compare.h"
+//#include "base/i18n/string_compare.h"
 #include "base/memory/scoped_ptr.h"
-#include "third_party/icu/source/i18n/unicode/coll.h"
+//#include "third_party/icu/source/i18n/unicode/coll.h"
 #include "ui/base/ui_export.h"
 
 namespace l10n_util {

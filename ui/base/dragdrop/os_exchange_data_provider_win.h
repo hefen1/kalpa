@@ -127,11 +127,11 @@ class DataObjectImpl : public DownloadFileObserver,
 class UI_EXPORT OSExchangeDataProviderWin : public OSExchangeData::Provider {
  public:
   // Returns true if source has plain text that is a valid url.
-  static bool HasPlainTextURL(IDataObject* source);
+  //YY static bool HasPlainTextURL(IDataObject* source);
 
   // Returns true if source has plain text that is a valid URL and sets url to
   // that url.
-  static bool GetPlainTextURL(IDataObject* source, GURL* url);
+  //YY static bool GetPlainTextURL(IDataObject* source, GURL* url);
 
   static DataObjectImpl* GetDataObjectImpl(const OSExchangeData& data);
   static IDataObject* GetIDataObject(const OSExchangeData& data);
@@ -149,7 +149,7 @@ class UI_EXPORT OSExchangeDataProviderWin : public OSExchangeData::Provider {
   // OSExchangeData::Provider methods.
   virtual Provider* Clone() const;
   virtual void SetString(const base::string16& data);
-  virtual void SetURL(const GURL& url, const base::string16& title);
+  //YY virtual void SetURL(const GURL& url, const base::string16& title);
   virtual void SetFilename(const base::FilePath& path);
   virtual void SetFilenames(
       const std::vector<OSExchangeData::FileInfo>& filenames);
@@ -157,10 +157,10 @@ class UI_EXPORT OSExchangeDataProviderWin : public OSExchangeData::Provider {
                               const Pickle& data);
   virtual void SetFileContents(const base::FilePath& filename,
                                const std::string& file_contents);
-  virtual void SetHtml(const base::string16& html, const GURL& base_url);
+  //YY virtual void SetHtml(const base::string16& html, const GURL& base_url);
 
   virtual bool GetString(base::string16* data) const;
-  virtual bool GetURLAndTitle(GURL* url, base::string16* title) const;
+  //YY virtual bool GetURLAndTitle(GURL* url, base::string16* title) const;
   virtual bool GetFilename(base::FilePath* path) const;
   virtual bool GetFilenames(
       std::vector<OSExchangeData::FileInfo>* filenames) const;
@@ -168,12 +168,12 @@ class UI_EXPORT OSExchangeDataProviderWin : public OSExchangeData::Provider {
                               Pickle* data) const;
   virtual bool GetFileContents(base::FilePath* filename,
                                std::string* file_contents) const;
-  virtual bool GetHtml(base::string16* html, GURL* base_url) const;
+  //YY virtual bool GetHtml(base::string16* html, GURL* base_url) const;
   virtual bool HasString() const;
-  virtual bool HasURL() const;
+  //YY virtual bool HasURL() const;
   virtual bool HasFile() const;
   virtual bool HasFileContents() const;
-  virtual bool HasHtml() const;
+  //YY virtual bool HasHtml() const;
   virtual bool HasCustomFormat(
       const OSExchangeData::CustomFormat& format) const;
   virtual void SetDownloadFileInfo(

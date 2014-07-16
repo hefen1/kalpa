@@ -8,18 +8,18 @@
 
 #include "base/basictypes.h"
 #include "base/files/file_path.h"
-#include "base/i18n/file_util_icu.h"
+//YY #include "base/i18n/file_util_icu.h"
 #include "base/logging.h"
 #include "base/memory/scoped_handle.h"
 #include "base/pickle.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/win/scoped_hglobal.h"
 #include "grit/ui_strings.h"
-#include "net/base/net_util.h"
+//YY #include "net/base/net_util.h"
 #include "ui/base/clipboard/clipboard.h"
 #include "ui/base/clipboard/clipboard_util_win.h"
 #include "ui/base/l10n/l10n_util.h"
-#include "url/gurl.h"
+//YY #include "url/gurl.h"
 
 namespace ui {
 
@@ -29,12 +29,12 @@ namespace ui {
 static STGMEDIUM* GetStorageForBytes(const void* data, size_t bytes);
 template <typename T>
 static STGMEDIUM* GetStorageForString(const std::basic_string<T>& data);
-// Creates the contents of an Internet Shortcut file for the given URL.
-static void GetInternetShortcutFileContents(const GURL& url, std::string* data);
-// Creates a valid file name given a suggested title and URL.
-static void CreateValidFileNameFromTitle(const GURL& url,
-                                         const base::string16& title,
-                                         base::string16* validated);
+//// Creates the contents of an Internet Shortcut file for the given URL.
+//static void GetInternetShortcutFileContents(const GURL& url, std::string* data);
+//// Creates a valid file name given a suggested title and URL.
+//static void CreateValidFileNameFromTitle(const GURL& url,
+//                                         const base::string16& title,
+//                                         base::string16* validated);
 // Creates a new STGMEDIUM object to hold a file.
 static STGMEDIUM* GetStorageForFileName(const base::FilePath& path);
 static STGMEDIUM* GetIDListStorageForFileName(const base::FilePath& path);
@@ -209,27 +209,27 @@ FormatEtcEnumerator* FormatEtcEnumerator::CloneFromOther(
 ///////////////////////////////////////////////////////////////////////////////
 // OSExchangeDataProviderWin, public:
 
-// static
-bool OSExchangeDataProviderWin::HasPlainTextURL(IDataObject* source) {
-  base::string16 plain_text;
-  return (ClipboardUtil::GetPlainText(source, &plain_text) &&
-          !plain_text.empty() && GURL(plain_text).is_valid());
-}
-
-// static
-bool OSExchangeDataProviderWin::GetPlainTextURL(IDataObject* source,
-                                                GURL* url) {
-  base::string16 plain_text;
-  if (ClipboardUtil::GetPlainText(source, &plain_text) &&
-      !plain_text.empty()) {
-    GURL gurl(plain_text);
-    if (gurl.is_valid()) {
-      *url = gurl;
-      return true;
-    }
-  }
-  return false;
-}
+//// static
+//bool OSExchangeDataProviderWin::HasPlainTextURL(IDataObject* source) {
+//  base::string16 plain_text;
+//  return (ClipboardUtil::GetPlainText(source, &plain_text) &&
+//          !plain_text.empty() && GURL(plain_text).is_valid());
+//}
+//
+//// static
+//bool OSExchangeDataProviderWin::GetPlainTextURL(IDataObject* source,
+//                                                GURL* url) {
+//  base::string16 plain_text;
+//  if (ClipboardUtil::GetPlainText(source, &plain_text) &&
+//      !plain_text.empty()) {
+//    GURL gurl(plain_text);
+//    if (gurl.is_valid()) {
+//      *url = gurl;
+//      return true;
+//    }
+//  }
+//  return false;
+//}
 
 // static
 DataObjectImpl* OSExchangeDataProviderWin::GetDataObjectImpl(
@@ -280,44 +280,44 @@ void OSExchangeDataProviderWin::SetString(const base::string16& data) {
       Clipboard::GetPlainTextFormatType().ToFormatEtc(), storage));
 }
 
-void OSExchangeDataProviderWin::SetURL(const GURL& url,
-                                       const base::string16& title) {
-  // NOTE WELL:
-  // Every time you change the order of the first two CLIPFORMATS that get
-  // added here, you need to update the EnumerationViaCOM test case in
-  // the _unittest.cc file to reflect the new arrangement otherwise that test
-  // will fail! It assumes an insertion order.
-
-  // Add text/x-moz-url for drags from Firefox
-  base::string16 x_moz_url_str = UTF8ToUTF16(url.spec());
-  x_moz_url_str += '\n';
-  x_moz_url_str += title;
-  STGMEDIUM* storage = GetStorageForString(x_moz_url_str);
-  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
-      Clipboard::GetMozUrlFormatType().ToFormatEtc(), storage));
-
-  // Add a .URL shortcut file for dragging to Explorer.
-  base::string16 valid_file_name;
-  CreateValidFileNameFromTitle(url, title, &valid_file_name);
-  std::string shortcut_url_file_contents;
-  GetInternetShortcutFileContents(url, &shortcut_url_file_contents);
-  SetFileContents(base::FilePath(valid_file_name), shortcut_url_file_contents);
-
-  // Add a UniformResourceLocator link for apps like IE and Word.
-  storage = GetStorageForString(UTF8ToUTF16(url.spec()));
-  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
-      Clipboard::GetUrlWFormatType().ToFormatEtc(), storage));
-  storage = GetStorageForString(url.spec());
-  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
-      Clipboard::GetUrlFormatType().ToFormatEtc(), storage));
-
-  // TODO(beng): add CF_HTML.
-  // http://code.google.com/p/chromium/issues/detail?id=6767
-
-  // Also add text representations (these should be last since they're the
-  // least preferable).
-  SetString(UTF8ToUTF16(url.spec()));
-}
+//void OSExchangeDataProviderWin::SetURL(const GURL& url,
+//                                       const base::string16& title) {
+//  // NOTE WELL:
+//  // Every time you change the order of the first two CLIPFORMATS that get
+//  // added here, you need to update the EnumerationViaCOM test case in
+//  // the _unittest.cc file to reflect the new arrangement otherwise that test
+//  // will fail! It assumes an insertion order.
+//
+//  // Add text/x-moz-url for drags from Firefox
+//  base::string16 x_moz_url_str = UTF8ToUTF16(url.spec());
+//  x_moz_url_str += '\n';
+//  x_moz_url_str += title;
+//  STGMEDIUM* storage = GetStorageForString(x_moz_url_str);
+//  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
+//      Clipboard::GetMozUrlFormatType().ToFormatEtc(), storage));
+//
+//  // Add a .URL shortcut file for dragging to Explorer.
+//  base::string16 valid_file_name;
+//  CreateValidFileNameFromTitle(url, title, &valid_file_name);
+//  std::string shortcut_url_file_contents;
+//  GetInternetShortcutFileContents(url, &shortcut_url_file_contents);
+//  SetFileContents(base::FilePath(valid_file_name), shortcut_url_file_contents);
+//
+//  // Add a UniformResourceLocator link for apps like IE and Word.
+//  storage = GetStorageForString(UTF8ToUTF16(url.spec()));
+//  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
+//      Clipboard::GetUrlWFormatType().ToFormatEtc(), storage));
+//  storage = GetStorageForString(url.spec());
+//  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
+//      Clipboard::GetUrlFormatType().ToFormatEtc(), storage));
+//
+//  // TODO(beng): add CF_HTML.
+//  // http://code.google.com/p/chromium/issues/detail?id=6767
+//
+//  // Also add text representations (these should be last since they're the
+//  // least preferable).
+//  SetString(UTF8ToUTF16(url.spec()));
+//}
 
 void OSExchangeDataProviderWin::SetFilename(const base::FilePath& path) {
   STGMEDIUM* storage = GetStorageForFileName(path);
@@ -365,46 +365,46 @@ void OSExchangeDataProviderWin::SetFileContents(
       Clipboard::GetFileContentZeroFormatType().ToFormatEtc(), storage));
 }
 
-void OSExchangeDataProviderWin::SetHtml(const base::string16& html,
-                                        const GURL& base_url) {
-  // Add both MS CF_HTML and text/html format.  CF_HTML should be in utf-8.
-  std::string utf8_html = UTF16ToUTF8(html);
-  std::string url = base_url.is_valid() ? base_url.spec() : std::string();
-
-  std::string cf_html = ClipboardUtil::HtmlToCFHtml(utf8_html, url);
-  STGMEDIUM* storage = GetStorageForBytes(cf_html.c_str(), cf_html.size());
-  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
-      Clipboard::GetHtmlFormatType().ToFormatEtc(), storage));
-
-  STGMEDIUM* storage_plain = GetStorageForBytes(utf8_html.c_str(),
-                                                utf8_html.size());
-  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
-      Clipboard::GetTextHtmlFormatType().ToFormatEtc(), storage_plain));
-}
+//void OSExchangeDataProviderWin::SetHtml(const base::string16& html,
+//                                        const GURL& base_url) {
+//  // Add both MS CF_HTML and text/html format.  CF_HTML should be in utf-8.
+//  std::string utf8_html = UTF16ToUTF8(html);
+//  std::string url = base_url.is_valid() ? base_url.spec() : std::string();
+//
+//  std::string cf_html = ClipboardUtil::HtmlToCFHtml(utf8_html, url);
+//  STGMEDIUM* storage = GetStorageForBytes(cf_html.c_str(), cf_html.size());
+//  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
+//      Clipboard::GetHtmlFormatType().ToFormatEtc(), storage));
+//
+//  STGMEDIUM* storage_plain = GetStorageForBytes(utf8_html.c_str(),
+//                                                utf8_html.size());
+//  data_->contents_.push_back(new DataObjectImpl::StoredDataInfo(
+//      Clipboard::GetTextHtmlFormatType().ToFormatEtc(), storage_plain));
+//}
 
 bool OSExchangeDataProviderWin::GetString(base::string16* data) const {
   return ClipboardUtil::GetPlainText(source_object_, data);
 }
 
-bool OSExchangeDataProviderWin::GetURLAndTitle(GURL* url,
-                                               base::string16* title) const {
-  base::string16 url_str;
-  bool success = ClipboardUtil::GetUrl(source_object_, &url_str, title, true);
-  if (success) {
-    GURL test_url(url_str);
-    if (test_url.is_valid()) {
-      *url = test_url;
-      return true;
-    }
-  } else if (GetPlainTextURL(source_object_, url)) {
-    if (url->is_valid())
-      *title = net::GetSuggestedFilename(*url, "", "", "", "", std::string());
-    else
-      title->clear();
-    return true;
-  }
-  return false;
-}
+//bool OSExchangeDataProviderWin::GetURLAndTitle(GURL* url,
+//                                               base::string16* title) const {
+//  base::string16 url_str;
+//  bool success = ClipboardUtil::GetUrl(source_object_, &url_str, title, true);
+//  if (success) {
+//    GURL test_url(url_str);
+//    if (test_url.is_valid()) {
+//      *url = test_url;
+//      return true;
+//    }
+//  } else if (GetPlainTextURL(source_object_, url)) {
+//    if (url->is_valid())
+//      *title = net::GetSuggestedFilename(*url, "", "", "", "", std::string());
+//    else
+//      title->clear();
+//    return true;
+//  }
+//  return false;
+//}
 
 bool OSExchangeDataProviderWin::GetFilename(base::FilePath* path) const {
   std::vector<base::string16> filenames;
@@ -458,23 +458,23 @@ bool OSExchangeDataProviderWin::GetFileContents(
   return true;
 }
 
-bool OSExchangeDataProviderWin::GetHtml(base::string16* html,
-                                        GURL* base_url) const {
-  std::string url;
-  bool success = ClipboardUtil::GetHtml(source_object_, html, &url);
-  if (success)
-    *base_url = GURL(url);
-  return success;
-}
+//bool OSExchangeDataProviderWin::GetHtml(base::string16* html,
+//                                        GURL* base_url) const {
+//  std::string url;
+//  bool success = ClipboardUtil::GetHtml(source_object_, html, &url);
+//  if (success)
+//    *base_url = GURL(url);
+//  return success;
+//}
 
 bool OSExchangeDataProviderWin::HasString() const {
   return ClipboardUtil::HasPlainText(source_object_);
 }
 
-bool OSExchangeDataProviderWin::HasURL() const {
-  return (ClipboardUtil::HasUrl(source_object_) ||
-          HasPlainTextURL(source_object_));
-}
+//bool OSExchangeDataProviderWin::HasURL() const {
+//  return (ClipboardUtil::HasUrl(source_object_) ||
+//          HasPlainTextURL(source_object_));
+//}
 
 bool OSExchangeDataProviderWin::HasFile() const {
   return ClipboardUtil::HasFilenames(source_object_);
@@ -484,9 +484,9 @@ bool OSExchangeDataProviderWin::HasFileContents() const {
   return ClipboardUtil::HasFileContents(source_object_);
 }
 
-bool OSExchangeDataProviderWin::HasHtml() const {
-  return ClipboardUtil::HasHtml(source_object_);
-}
+//bool OSExchangeDataProviderWin::HasHtml() const {
+//  return ClipboardUtil::HasHtml(source_object_);
+//}
 
 bool OSExchangeDataProviderWin::HasCustomFormat(
     const OSExchangeData::CustomFormat& format) const {
@@ -878,38 +878,38 @@ static STGMEDIUM* GetStorageForString(const std::basic_string<T>& data) {
       (data.size() + 1) * sizeof(std::basic_string<T>::value_type));
 }
 
-static void GetInternetShortcutFileContents(const GURL& url,
-                                            std::string* data) {
-  DCHECK(data);
-  static const std::string kInternetShortcutFileStart =
-      "[InternetShortcut]\r\nURL=";
-  static const std::string kInternetShortcutFileEnd =
-      "\r\n";
-  *data = kInternetShortcutFileStart + url.spec() + kInternetShortcutFileEnd;
-}
-
-static void CreateValidFileNameFromTitle(const GURL& url,
-                                         const base::string16& title,
-                                         base::string16* validated) {
-  if (title.empty()) {
-    if (url.is_valid()) {
-      *validated = net::GetSuggestedFilename(url, "", "", "", "",
-                                             std::string());
-    } else {
-      // Nothing else can be done, just use a default.
-      *validated =
-          l10n_util::GetStringUTF16(IDS_APP_UNTITLED_SHORTCUT_FILE_NAME);
-    }
-  } else {
-    *validated = title;
-    file_util::ReplaceIllegalCharactersInPath(validated, '-');
-  }
-  static const wchar_t extension[] = L".url";
-  static const size_t max_length = MAX_PATH - arraysize(extension);
-  if (validated->size() > max_length)
-    validated->erase(max_length);
-  *validated += extension;
-}
+//static void GetInternetShortcutFileContents(const GURL& url,
+//                                            std::string* data) {
+//  DCHECK(data);
+//  static const std::string kInternetShortcutFileStart =
+//      "[InternetShortcut]\r\nURL=";
+//  static const std::string kInternetShortcutFileEnd =
+//      "\r\n";
+//  *data = kInternetShortcutFileStart + url.spec() + kInternetShortcutFileEnd;
+//}
+//
+//static void CreateValidFileNameFromTitle(const GURL& url,
+//                                         const base::string16& title,
+//                                         base::string16* validated) {
+//  if (title.empty()) {
+//    if (url.is_valid()) {
+//      *validated = net::GetSuggestedFilename(url, "", "", "", "",
+//                                             std::string());
+//    } else {
+//      // Nothing else can be done, just use a default.
+//      *validated =
+//          l10n_util::GetStringUTF16(IDS_APP_UNTITLED_SHORTCUT_FILE_NAME);
+//    }
+//  } else {
+//    *validated = title;
+//    file_util::ReplaceIllegalCharactersInPath(validated, '-');
+//  }
+//  static const wchar_t extension[] = L".url";
+//  static const size_t max_length = MAX_PATH - arraysize(extension);
+//  if (validated->size() > max_length)
+//    validated->erase(max_length);
+//  *validated += extension;
+//}
 
 static STGMEDIUM* GetStorageForFileName(const base::FilePath& path) {
   const size_t kDropSize = sizeof(DROPFILES);

@@ -5,7 +5,7 @@
 #include "ui/base/dragdrop/os_exchange_data.h"
 
 #include "base/pickle.h"
-#include "url/gurl.h"
+//#include "url/gurl.h"
 
 namespace ui {
 
@@ -40,9 +40,9 @@ void OSExchangeData::SetString(const base::string16& data) {
   provider_->SetString(data);
 }
 
-void OSExchangeData::SetURL(const GURL& url, const base::string16& title) {
-  provider_->SetURL(url, title);
-}
+//void OSExchangeData::SetURL(const GURL& url, const base::string16& title) {
+//  provider_->SetURL(url, title);
+//}
 
 void OSExchangeData::SetFilename(const base::FilePath& path) {
   provider_->SetFilename(path);
@@ -62,9 +62,9 @@ bool OSExchangeData::GetString(base::string16* data) const {
   return provider_->GetString(data);
 }
 
-bool OSExchangeData::GetURLAndTitle(GURL* url, base::string16* title) const {
-  return provider_->GetURLAndTitle(url, title);
-}
+//bool OSExchangeData::GetURLAndTitle(GURL* url, base::string16* title) const {
+//  return provider_->GetURLAndTitle(url, title);
+//}
 
 bool OSExchangeData::GetFilename(base::FilePath* path) const {
   return provider_->GetFilename(path);
@@ -84,9 +84,9 @@ bool OSExchangeData::HasString() const {
   return provider_->HasString();
 }
 
-bool OSExchangeData::HasURL() const {
-  return provider_->HasURL();
-}
+//bool OSExchangeData::HasURL() const {
+//  return provider_->HasURL();
+//}
 
 bool OSExchangeData::HasFile() const {
   return provider_->HasFile();
@@ -101,15 +101,15 @@ bool OSExchangeData::HasAllFormats(
     const std::set<CustomFormat>& custom_formats) const {
   if ((formats & STRING) != 0 && !HasString())
     return false;
-  if ((formats & URL) != 0 && !HasURL())
-    return false;
+  //if ((formats & URL) != 0 && !HasURL())
+  //  return false;
 #if defined(OS_WIN)
   if ((formats & FILE_CONTENTS) != 0 && !provider_->HasFileContents())
     return false;
 #endif
 #if defined(OS_WIN) || defined(USE_AURA)
-  if ((formats & HTML) != 0 && !provider_->HasHtml())
-    return false;
+  //if ((formats & HTML) != 0 && !provider_->HasHtml())
+  //  return false;
 #endif
   if ((formats & FILE_NAME) != 0 && !provider_->HasFile())
     return false;
@@ -126,15 +126,15 @@ bool OSExchangeData::HasAnyFormat(
     const std::set<CustomFormat>& custom_formats) const {
   if ((formats & STRING) != 0 && HasString())
     return true;
-  if ((formats & URL) != 0 && HasURL())
-    return true;
+  //if ((formats & URL) != 0 && HasURL())
+  //  return true;
 #if defined(OS_WIN)
   if ((formats & FILE_CONTENTS) != 0 && provider_->HasFileContents())
     return true;
 #endif
 #if defined(OS_WIN) || defined(USE_AURA)
-  if ((formats & HTML) != 0 && provider_->HasHtml())
-    return true;
+  //if ((formats & HTML) != 0 && provider_->HasHtml())
+  //  return true;
 #endif
   if ((formats & FILE_NAME) != 0 && provider_->HasFile())
     return true;
@@ -166,14 +166,14 @@ void OSExchangeData::SetInDragLoop(bool in_drag_loop) {
 }
 #endif
 
-#if defined(OS_WIN) || defined(USE_AURA)
-void OSExchangeData::SetHtml(const base::string16& html, const GURL& base_url) {
-  provider_->SetHtml(html, base_url);
-}
-
-bool OSExchangeData::GetHtml(base::string16* html, GURL* base_url) const {
-  return provider_->GetHtml(html, base_url);
-}
-#endif
+//#if defined(OS_WIN) || defined(USE_AURA)
+//void OSExchangeData::SetHtml(const base::string16& html, const GURL& base_url) {
+//  provider_->SetHtml(html, base_url);
+//}
+//
+//bool OSExchangeData::GetHtml(base::string16* html, GURL* base_url) const {
+//  return provider_->GetHtml(html, base_url);
+//}
+//#endif
 
 }  // namespace ui

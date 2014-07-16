@@ -792,7 +792,7 @@
         '../ui.gyp:ui',
         '../ui.gyp:ui_resources',
         'views',
-        'views_test_support',
+        #'views_test_support',
         'views_examples_lib'
       ],
       #'include_dirs': [

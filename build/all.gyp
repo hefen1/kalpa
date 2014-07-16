@@ -11,8 +11,9 @@
       'dependencies': [
         'some.gyp:*',
         '../base/base.gyp:*',
-        '../skia/skia.gyp:*',        
-        '../ui/ui.gyp:*',        
+        '../skia/skia.gyp:*',
+        '../ui/ui.gyp:*',
+        '../ui/views/views.gyp:*',
       ],
     }, # target_name: All
   ],

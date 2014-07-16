@@ -1,5 +1,11 @@
 7.16
 =====
+1. views-->ui
+2. unitests pass
+3. example pass
+
+7.16
+=====
 1. base_i18n-->icu
 2. gurl-->base_i18n
 3. ui-->skia+base_i18n+gurl
@@ -30,7 +36,7 @@ chrome/tools/build/repack_locales.py
 
 gen project
 ======
-run build_proj.bat
+run gen_proj.bat
 
 commit changes
 =====

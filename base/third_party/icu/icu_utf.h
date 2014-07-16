@@ -18,6 +18,7 @@
 #define BASE_THIRD_PARTY_ICU_ICU_UTF_H_
 
 #include "base/basictypes.h"
+#include "base/base_export.h"
 
 namespace base_icu {
 
@@ -169,7 +170,7 @@ extern const uint8 utf8_countTrailBytes[256];
  * Function for handling "next code point" with error-checking.
  * @internal
  */
-UChar32 utf8_nextCharSafeBody(const uint8 *s, int32 *pi, int32 length, UChar32 c, UBool strict);
+BASE_EXPORT UChar32 utf8_nextCharSafeBody(const uint8 *s, int32 *pi, int32 length, UChar32 c, UBool strict);
 
 /**
  * Get a code point from a string at a code point boundary offset,

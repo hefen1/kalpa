@@ -15,9 +15,9 @@
       'type': '<(component)',
       'dependencies': [
         '../base/base.gyp:base',
-        '../third_party/icu/icu.gyp:icudata',
-        '../third_party/icu/icu.gyp:icui18n',
-        '../third_party/icu/icu.gyp:icuuc',
+        #'../third_party/icu/icu.gyp:icudata',
+        #'../third_party/icu/icu.gyp:icui18n',
+        #'../third_party/icu/icu.gyp:icuuc',
       ],
       'sources': [
         'gurl.cc',
@@ -64,10 +64,10 @@
       'target_name': 'url_unittests',
       'type': 'executable',
       'dependencies': [
-        '../base/base.gyp:base_i18n',
+        '../base/base.gyp:base',
         '../base/base.gyp:run_all_unittests',
         '../testing/gtest.gyp:gtest',
-        '../third_party/icu/icu.gyp:icuuc',
+        #'../third_party/icu/icu.gyp:icuuc',
         'url_lib',
       ],
       'sources': [

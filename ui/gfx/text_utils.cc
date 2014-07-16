@@ -4,7 +4,7 @@
 
 #include "ui/gfx/text_utils.h"
 
-//#include "base/i18n/char_iterator.h"
+#include "base/i18n/char_iterator.h"
 
 namespace gfx {
 

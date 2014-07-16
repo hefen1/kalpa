@@ -7,9 +7,9 @@
     'chromium_code': 1,
   },
   'includes': [
-    #'shell_dialogs.gypi',
+    'shell_dialogs.gypi',
     'ui_resources.gypi',
-    #'ui_unittests.gypi',
+    'ui_unittests.gypi',
   ],
   'targets': [
     {
@@ -17,16 +17,16 @@
       'type': '<(component)',
       'dependencies': [
         '../base/base.gyp:base',
-        #'../base/base.gyp:base_i18n',
+        '../base/base.gyp:base_i18n',
         '../base/base.gyp:base_static',
         '../base/third_party/dynamic_annotations/dynamic_annotations.gyp:dynamic_annotations',
         #'../net/net.gyp:net',
         '../skia/skia.gyp:skia',
-        #'../third_party/icu/icu.gyp:icui18n',
-        #'../third_party/icu/icu.gyp:icuuc',
+        '../third_party/icu/icu.gyp:icui18n',
+        '../third_party/icu/icu.gyp:icuuc',
         '../third_party/libpng/libpng.gyp:libpng',
         '../third_party/zlib/zlib.gyp:zlib',
-        #'../url/url.gyp:url_lib',
+        '../url/url.gyp:url_lib',
         'base/strings/ui_strings.gyp:ui_strings',
         'ui_resources',
       ],
@@ -38,16 +38,16 @@
       # Export these dependencies since text_elider.h includes ICU headers.
       'export_dependent_settings': [
         #'../net/net.gyp:net',
-        #'../third_party/icu/icu.gyp:icui18n',
-        #'../third_party/icu/icu.gyp:icuuc',
+        '../third_party/icu/icu.gyp:icui18n',
+        '../third_party/icu/icu.gyp:icuuc',
       ],
       'sources' : [
-        'android/ui_jni_registrar.cc',
-        'android/ui_jni_registrar.h',
-        'android/view_android.cc',
-        'android/view_android.h',
-        'android/window_android.cc',
-        'android/window_android.h',
+        #'android/ui_jni_registrar.cc',
+        #'android/ui_jni_registrar.h',
+        #'android/view_android.cc',
+        #'android/view_android.h',
+        #'android/window_android.cc',
+        #'android/window_android.h',
         'base/accelerators/accelerator.cc',
         'base/accelerators/accelerator.h',
         'base/accelerators/menu_label_accelerator_util_linux.cc',
@@ -613,6 +613,16 @@
         #'webui/jstemplate_builder.h',
         #'webui/web_ui_util.cc',
         #'webui/web_ui_util.h',
+
+        # net
+        'net/big_endian.cc',
+        'net/big_endian.h',
+        'net/escape.cc',
+        'net/escape.h',
+        'net/net_util.cc',
+        'net/net_util.h',
+        'net/registry_controlled_domains/registry_controlled_domain.cc',
+        'net/registry_controlled_domains/registry_controlled_domain.h',        
       ],
       'target_conditions': [
         ['OS == "ios"', {
@@ -966,18 +976,18 @@
     #    ]
     #  }
     #},
-    #{
-    #  'target_name': 'keycode_converter',
-    #  'type': 'static_library',
-    #  'dependencies': [
-    #    '../base/base.gyp:base',
-    #  ],
-    #  'sources': [
-    #    'base/keycodes/keycode_converter.cc',
-    #    'base/keycodes/keycode_converter.h',
-    #    'base/keycodes/keycode_converter_data.h',
-    #  ],
-    #}
+    {
+      'target_name': 'keycode_converter',
+      'type': 'static_library',
+      'dependencies': [
+        '../base/base.gyp:base',
+      ],
+      'sources': [
+        'base/keycodes/keycode_converter.cc',
+        'base/keycodes/keycode_converter.h',
+        'base/keycodes/keycode_converter_data.h',
+      ],
+    }
   ],
   'conditions': [
     ['OS=="android"' , {

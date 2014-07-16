@@ -18,7 +18,7 @@
 #include "base/synchronization/lock.h"
 #include "build/build_config.h"
 #include "grit/app_locale_settings.h"
-//#include "net/base/big_endian.h"
+#include "ui/net/big_endian.h"
 #include "skia/ext/image_operations.h"
 #include "third_party/skia/include/core/SkBitmap.h"
 #include "ui/base/l10n/l10n_util.h"

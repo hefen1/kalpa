@@ -88,6 +88,7 @@
         'ui',
         'ui_resources',
         'ui_test_support',
+        '../chrome/chrome_resources.gyp:packed_resources',
       ],
       # iOS uses a small subset of ui. common_sources are the only files that
       # are built on iOS.
@@ -182,7 +183,7 @@
         'gfx/transform_util_unittest.cc',
         'gfx/utf16_indexing_unittest.cc',
         'shell_dialogs/select_file_dialog_win_unittest.cc',
-        'webui/web_ui_util_unittest.cc',
+        #'webui/web_ui_util_unittest.cc',
       ],
       'include_dirs': [
         '../',

@@ -4,7 +4,7 @@
 
 #include "ui/base/text/bytes_formatting.h"
 
-//#include "base/i18n/number_formatting.h"
+#include "base/i18n/number_formatting.h"
 #include "base/logging.h"
 #include "base/strings/string_util.h"
 #include "base/strings/utf_string_conversions.h"

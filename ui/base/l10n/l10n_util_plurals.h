@@ -12,8 +12,8 @@
 #include <vector>
 
 #include "base/memory/scoped_ptr.h"
-//#include "third_party/icu/source/i18n/unicode/plurfmt.h"
-//#include "third_party/icu/source/i18n/unicode/plurrule.h"
+#include "third_party/icu/source/i18n/unicode/plurfmt.h"
+#include "third_party/icu/source/i18n/unicode/plurrule.h"
 
 namespace l10n_util {
 

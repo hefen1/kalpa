@@ -18,7 +18,6 @@
           },
           'includes': [ '../build/grit_action.gypi' ],
         },
-        
         #{
         #  'action_name': 'webui_resources',
         #  'variables': {

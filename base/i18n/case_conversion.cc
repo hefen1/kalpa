@@ -4,42 +4,22 @@
 
 #include "base/i18n/case_conversion.h"
 
-#if defined(OS_WIN)
-#include <windows.h>
-#endif
-
-#include "base/string16.h"
-// #include "unicode/unistr.h"
-
+#include "base/strings/string16.h"
+#include "third_party/icu/source/common/unicode/unistr.h"
 
 namespace base {
 namespace i18n {
 
-// string16 ToLower(const StringPiece16& string) {
-//   icu::UnicodeString unicode_string(string.data(), string.size());
-//   unicode_string.toLower();
-//   return string16(unicode_string.getBuffer(), unicode_string.length());
-// }
-// 
-// string16 ToUpper(const StringPiece16& string) {
-//   icu::UnicodeString unicode_string(string.data(), string.size());
-//   unicode_string.toUpper();
-//   return string16(unicode_string.getBuffer(), unicode_string.length());
-//}
-string16 ToLower(const StringPiece16& string)
-{
-    // WLW TODO: fix it.
-    string16 lower(string.data());
-    CharLowerW(const_cast<LPWSTR>(lower.c_str()));
-    return lower;
+string16 ToLower(const StringPiece16& string) {
+  icu::UnicodeString unicode_string(string.data(), string.size());
+  unicode_string.toLower();
+  return string16(unicode_string.getBuffer(), unicode_string.length());
 }
 
-string16 ToUpper(const StringPiece16& string)
-{
-    // WLW TODO: fix it.
-    string16 upper(string.data());
-    CharUpperW(const_cast<LPWSTR>(upper.c_str()));
-    return upper;
+string16 ToUpper(const StringPiece16& string) {
+  icu::UnicodeString unicode_string(string.data(), string.size());
+  unicode_string.toUpper();
+  return string16(unicode_string.getBuffer(), unicode_string.length());
 }
 
 }  // namespace i18n

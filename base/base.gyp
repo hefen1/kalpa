@@ -273,6 +273,71 @@
       ],
     },
     {
+      'target_name': 'base_i18n',
+      'type': '<(component)',
+      'variables': {
+        'enable_wexit_time_destructors': 1,
+        'optimize': 'max',
+      },
+      'dependencies': [
+        'base',
+        'third_party/dynamic_annotations/dynamic_annotations.gyp:dynamic_annotations',
+        '../third_party/icu/icu.gyp:icui18n',
+        '../third_party/icu/icu.gyp:icuuc',
+      ],
+      'conditions': [
+        ['toolkit_uses_gtk==1', {
+          'dependencies': [
+            # i18n/rtl.cc uses gtk
+            '../build/linux/system.gyp:gtk',
+          ],
+        }],
+        ['OS == "win"', {
+          # TODO(jschuh): crbug.com/167187 fix size_t to int truncations.
+          'msvs_disabled_warnings': [
+            4267,
+          ],
+        }],
+      ],
+      'export_dependent_settings': [
+        'base',
+      ],
+      'defines': [
+        'BASE_I18N_IMPLEMENTATION',
+      ],
+      'sources': [
+        'i18n/base_i18n_export.h',
+        'i18n/bidi_line_iterator.cc',
+        'i18n/bidi_line_iterator.h',
+        'i18n/break_iterator.cc',
+        'i18n/break_iterator.h',
+        'i18n/char_iterator.cc',
+        'i18n/char_iterator.h',
+        'i18n/case_conversion.cc',
+        'i18n/case_conversion.h',
+        'i18n/file_util_icu.cc',
+        'i18n/file_util_icu.h',
+        'i18n/i18n_constants.cc',
+        'i18n/i18n_constants.h',
+        'i18n/icu_encoding_detection.cc',
+        'i18n/icu_encoding_detection.h',
+        'i18n/icu_string_conversions.cc',
+        'i18n/icu_string_conversions.h',
+        'i18n/icu_util.cc',
+        'i18n/icu_util.h',
+        'i18n/number_formatting.cc',
+        'i18n/number_formatting.h',
+        'i18n/rtl.cc',
+        'i18n/rtl.h',
+        'i18n/string_compare.cc',
+        'i18n/string_compare.h',
+        'i18n/string_search.cc',
+        'i18n/string_search.h',
+        'i18n/time_formatting.cc',
+        'i18n/time_formatting.h',
+      ],
+    },
+    {
       'target_name': 'base_prefs',
       'type': '<(component)',
       'variables': {
@@ -427,6 +492,15 @@
         'gmock_unittest.cc',
         'guid_unittest.cc',
         'id_map_unittest.cc',
+        'i18n/break_iterator_unittest.cc',
+        'i18n/char_iterator_unittest.cc',
+        'i18n/case_conversion_unittest.cc',
+        'i18n/file_util_icu_unittest.cc',
+        'i18n/icu_string_conversions_unittest.cc',
+        'i18n/number_formatting_unittest.cc',
+        'i18n/rtl_unittest.cc',
+        'i18n/string_search_unittest.cc',
+        'i18n/time_formatting_unittest.cc',
         'ini_parser_unittest.cc',
         'ios/device_util_unittest.mm',
         'json/json_parser_unittest.cc',
@@ -580,6 +654,7 @@
       ],
       'dependencies': [
         'base',
+        'base_i18n',
         'base_prefs',
         'base_prefs_test_support',
         'base_static',
@@ -588,6 +663,8 @@
         'third_party/dynamic_annotations/dynamic_annotations.gyp:dynamic_annotations',
         '../testing/gmock.gyp:gmock',
         '../testing/gtest.gyp:gtest',
+        '../third_party/icu/icu.gyp:icui18n',
+        '../third_party/icu/icu.gyp:icuuc',
       ],
       'includes': ['../build/nocompile.gypi'],
       'variables': {
@@ -695,7 +772,7 @@
           # This is needed to trigger the dll copy step on windows.
           # TODO(mark): This should not be necessary.
           'dependencies': [
-            #'../third_party/icu/icu.gyp:icudata',
+            '../third_party/icu/icu.gyp:icudata',
           ],
           'sources!': [
             'file_descriptor_shuffle_unittest.cc',
@@ -762,6 +839,7 @@
       'dependencies': [
         'base',
         'base_static',
+        'base_i18n',
         '../testing/gmock.gyp:gmock',
         '../testing/gtest.gyp:gtest',
         #'../third_party/libxml/libxml.gyp:libxml',
@@ -929,6 +1007,10 @@
             'base',
           ],
         },
+      ],
+    }],
+    ['OS == "win" and target_arch=="ia32"', {
+      'targets': [
       ],
     }],
     ['os_posix==1 and OS!="mac" and OS!="ios"', {

@@ -6,11 +6,11 @@
 
 #include <algorithm>
 
-//#include "base/i18n/break_iterator.h"
+#include "base/i18n/break_iterator.h"
 #include "base/logging.h"
 #include "base/stl_util.h"
-//#include "third_party/icu/source/common/unicode/rbbi.h"
-//#include "third_party/icu/source/common/unicode/utf16.h"
+#include "third_party/icu/source/common/unicode/rbbi.h"
+#include "third_party/icu/source/common/unicode/utf16.h"
 #include "third_party/skia/include/core/SkTypeface.h"
 #include "third_party/skia/include/effects/SkGradientShader.h"
 #include "ui/gfx/canvas.h"

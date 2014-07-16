@@ -13,9 +13,6 @@
         '../base/base.gyp:*',
         '../skia/skia.gyp:*',        
         '../ui/ui.gyp:*',        
-        '../testing/gmock.gyp:*',
-        '../testing/gtest.gyp:*',
-        '../third_party/zlib/zlib.gyp:*',
       ],
     }, # target_name: All
   ],

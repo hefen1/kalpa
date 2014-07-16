@@ -12,11 +12,11 @@
 
 #include "base/basictypes.h"
 #include "base/strings/string16.h"
-//#include "third_party/icu/source/common/unicode/uchar.h"
-//#include "third_party/icu/source/i18n/unicode/coll.h"
+#include "third_party/icu/source/common/unicode/uchar.h"
+#include "third_party/icu/source/i18n/unicode/coll.h"
 #include "ui/gfx/gfx_export.h"
 
-//class GURL;
+class GURL;
 
 namespace base {
 class FilePath;
@@ -38,14 +38,14 @@ UI_EXPORT extern const char16 kEllipsisUTF16[];
 // the domain is elided in the middle so that it splits the available width
 // equally with the elided username (should the username be short enough that it
 // doesn't need half the available width: the elided domain will occupy that
-//// extra width).
-//UI_EXPORT string16 ElideEmail(const string16& email,
-//                              const gfx::FontList& font_list,
-//                              int available_pixel_width);
-//// Obsolete version.  Use the above version which takes gfx::FontList.
-//UI_EXPORT string16 ElideEmail(const string16& email,
-//                              const gfx::Font& font,
-//                              int available_pixel_width);
+// extra width).
+UI_EXPORT string16 ElideEmail(const string16& email,
+                              const gfx::FontList& font_list,
+                              int available_pixel_width);
+// Obsolete version.  Use the above version which takes gfx::FontList.
+UI_EXPORT string16 ElideEmail(const string16& email,
+                              const gfx::Font& font,
+                              int available_pixel_width);
 
 // This function takes a GURL object and elides it. It returns a string
 // which composed of parts from subdomain, domain, path, filename and query.
@@ -61,15 +61,15 @@ UI_EXPORT extern const char16 kEllipsisUTF16[];
 // as an LTR string (using base::i18n::WrapStringWithLTRFormatting()) so that it
 // is displayed properly in an RTL context. Please refer to
 // http://crbug.com/6487 for more information.
-//UI_EXPORT string16 ElideUrl(const GURL& url,
-//                            const gfx::FontList& font_list,
-//                            int available_pixel_width,
-//                            const std::string& languages);
-//// Obsolete version.  Use the above version which takes gfx::FontList.
-//UI_EXPORT string16 ElideUrl(const GURL& url,
-//                            const gfx::Font& font,
-//                            int available_pixel_width,
-//                            const std::string& languages);
+UI_EXPORT string16 ElideUrl(const GURL& url,
+                            const gfx::FontList& font_list,
+                            int available_pixel_width,
+                            const std::string& languages);
+// Obsolete version.  Use the above version which takes gfx::FontList.
+UI_EXPORT string16 ElideUrl(const GURL& url,
+                            const gfx::Font& font,
+                            int available_pixel_width,
+                            const std::string& languages);
 
 enum ElideBehavior {
   // Add ellipsis at the end of the string.
@@ -111,35 +111,35 @@ UI_EXPORT string16 ElideFilename(const base::FilePath& filename,
 // SortedDisplayURLs for use in visually ordering the SortedDisplayURLs.
 //
 // SortedDisplayURL is relatively cheap and supports value semantics.
-//class UI_EXPORT SortedDisplayURL {
-// public:
-//  SortedDisplayURL(const GURL& url, const std::string& languages);
-//  SortedDisplayURL();
-//  ~SortedDisplayURL();
-//
-//  // Compares this SortedDisplayURL to |url| using |collator|. Returns a value
-//  // < 0, = 1 or > 0 as to whether this url is less then, equal to or greater
-//  // than the supplied url.
-//  int Compare(const SortedDisplayURL& other, icu::Collator* collator) const;
-//
-//  // Returns the display string for the URL.
-//  const string16& display_url() const { return display_url_; }
-//
-// private:
-//  // Returns everything after the host. This is used by Compare if the hosts
-//  // match.
-//  string16 AfterHost() const;
-//
-//  // Host name minus 'www.'. Used by Compare.
-//  string16 sort_host_;
-//
-//  // End of the prefix (spec and separator) in display_url_.
-//  size_t prefix_end_;
-//
-//  string16 display_url_;
-//
-//  DISALLOW_COPY_AND_ASSIGN(SortedDisplayURL);
-//};
+class UI_EXPORT SortedDisplayURL {
+ public:
+  SortedDisplayURL(const GURL& url, const std::string& languages);
+  SortedDisplayURL();
+  ~SortedDisplayURL();
+
+  // Compares this SortedDisplayURL to |url| using |collator|. Returns a value
+  // < 0, = 1 or > 0 as to whether this url is less then, equal to or greater
+  // than the supplied url.
+  int Compare(const SortedDisplayURL& other, icu::Collator* collator) const;
+
+  // Returns the display string for the URL.
+  const string16& display_url() const { return display_url_; }
+
+ private:
+  // Returns everything after the host. This is used by Compare if the hosts
+  // match.
+  string16 AfterHost() const;
+
+  // Host name minus 'www.'. Used by Compare.
+  string16 sort_host_;
+
+  // End of the prefix (spec and separator) in display_url_.
+  size_t prefix_end_;
+
+  string16 display_url_;
+
+  DISALLOW_COPY_AND_ASSIGN(SortedDisplayURL);
+};
 
 // Functions to elide strings when the font information is unknown.  As
 // opposed to the above functions, the ElideString() and
@@ -157,75 +157,75 @@ UI_EXPORT string16 ElideFilename(const base::FilePath& filename,
 UI_EXPORT bool ElideString(const string16& input, int max_len,
                            string16* output);
 
-//// Reformat |input| into |output| so that it fits into a |max_rows| by
-//// |max_cols| rectangle of characters.  Input newlines are respected, but
-//// lines that are too long are broken into pieces.  If |strict| is true,
-//// we break first at naturally occuring whitespace boundaries, otherwise
-//// we assume some other mechanism will do this in approximately the same
-//// spot after the fact.  If the word itself is too long, we always break
-//// intra-word (respecting UTF-16 surrogate pairs) as necssary. Truncation
-//// (indicated by an added 3 dots) occurs if the result is still too long.
-////  Returns true if the input had to be truncated (and not just reformatted).
-//UI_EXPORT bool ElideRectangleString(const string16& input, size_t max_rows,
-//                                    size_t max_cols, bool strict,
-//                                    string16* output);
-//
-//// Specifies the word wrapping behavior of |ElideRectangleText()| when a word
-//// would exceed the available width.
-//enum WordWrapBehavior {
-//  // Words that are too wide will be put on a new line, but will not be
-//  // truncated or elided.
-//  IGNORE_LONG_WORDS,
-//
-//  // Words that are too wide will be put on a new line and will be truncated to
-//  // the available width.
-//  TRUNCATE_LONG_WORDS,
-//
-//  // Words that are too wide will be put on a new line and will be elided to the
-//  // available width.
-//  ELIDE_LONG_WORDS,
-//
-//  // Words that are too wide will be put on a new line and will be wrapped over
-//  // multiple lines.
-//  WRAP_LONG_WORDS,
-//};
-//
-//// Indicates whether the |available_pixel_width| by |available_pixel_height|
-//// rectangle passed to |ElideRectangleText()| had insufficient space to
-//// accommodate the given |text|, leading to elision or truncation.
-//enum ReformattingResultFlags {
-//  INSUFFICIENT_SPACE_HORIZONTAL = 1 << 0,
-//  INSUFFICIENT_SPACE_VERTICAL = 1 << 1,
-//};
-//
-//// Reformats |text| into output vector |lines| so that the resulting text fits
-//// into an |available_pixel_width| by |available_pixel_height| rectangle with
-//// the specified |font_list|. Input newlines are respected, but lines that are
-//// too long are broken into pieces. For words that are too wide to fit on a
-//// single line, the wrapping behavior can be specified with the |wrap_behavior|
-//// param. Returns a combination of |ReformattingResultFlags| that indicate
-//// whether the given rectangle had insufficient space to accommodate |texŧ|,
-//// leading to elision or truncation (and not just reformatting).
-//UI_EXPORT int ElideRectangleText(const string16& text,
-//                                 const gfx::FontList& font_list,
-//                                 int available_pixel_width,
-//                                 int available_pixel_height,
-//                                 WordWrapBehavior wrap_behavior,
-//                                 std::vector<string16>* lines);
-//// Obsolete version.  Use the above version which takes gfx::FontList.
-//UI_EXPORT int ElideRectangleText(const string16& text,
-//                                 const gfx::Font& font,
-//                                 int available_pixel_width,
-//                                 int available_pixel_height,
-//                                 WordWrapBehavior wrap_behavior,
-//                                 std::vector<string16>* lines);
-//
-//// Truncates the string to length characters. This breaks the string at
-//// the first word break before length, adding the horizontal ellipsis
-//// character (unicode character 0x2026) to render ...
-//// The supplied string is returned if the string has length characters or
-//// less.
-//UI_EXPORT string16 TruncateString(const string16& string, size_t length);
+// Reformat |input| into |output| so that it fits into a |max_rows| by
+// |max_cols| rectangle of characters.  Input newlines are respected, but
+// lines that are too long are broken into pieces.  If |strict| is true,
+// we break first at naturally occuring whitespace boundaries, otherwise
+// we assume some other mechanism will do this in approximately the same
+// spot after the fact.  If the word itself is too long, we always break
+// intra-word (respecting UTF-16 surrogate pairs) as necssary. Truncation
+// (indicated by an added 3 dots) occurs if the result is still too long.
+//  Returns true if the input had to be truncated (and not just reformatted).
+UI_EXPORT bool ElideRectangleString(const string16& input, size_t max_rows,
+                                    size_t max_cols, bool strict,
+                                    string16* output);
+
+// Specifies the word wrapping behavior of |ElideRectangleText()| when a word
+// would exceed the available width.
+enum WordWrapBehavior {
+  // Words that are too wide will be put on a new line, but will not be
+  // truncated or elided.
+  IGNORE_LONG_WORDS,
+
+  // Words that are too wide will be put on a new line and will be truncated to
+  // the available width.
+  TRUNCATE_LONG_WORDS,
+
+  // Words that are too wide will be put on a new line and will be elided to the
+  // available width.
+  ELIDE_LONG_WORDS,
+
+  // Words that are too wide will be put on a new line and will be wrapped over
+  // multiple lines.
+  WRAP_LONG_WORDS,
+};
+
+// Indicates whether the |available_pixel_width| by |available_pixel_height|
+// rectangle passed to |ElideRectangleText()| had insufficient space to
+// accommodate the given |text|, leading to elision or truncation.
+enum ReformattingResultFlags {
+  INSUFFICIENT_SPACE_HORIZONTAL = 1 << 0,
+  INSUFFICIENT_SPACE_VERTICAL = 1 << 1,
+};
+
+// Reformats |text| into output vector |lines| so that the resulting text fits
+// into an |available_pixel_width| by |available_pixel_height| rectangle with
+// the specified |font_list|. Input newlines are respected, but lines that are
+// too long are broken into pieces. For words that are too wide to fit on a
+// single line, the wrapping behavior can be specified with the |wrap_behavior|
+// param. Returns a combination of |ReformattingResultFlags| that indicate
+// whether the given rectangle had insufficient space to accommodate |texŧ|,
+// leading to elision or truncation (and not just reformatting).
+UI_EXPORT int ElideRectangleText(const string16& text,
+                                 const gfx::FontList& font_list,
+                                 int available_pixel_width,
+                                 int available_pixel_height,
+                                 WordWrapBehavior wrap_behavior,
+                                 std::vector<string16>* lines);
+// Obsolete version.  Use the above version which takes gfx::FontList.
+UI_EXPORT int ElideRectangleText(const string16& text,
+                                 const gfx::Font& font,
+                                 int available_pixel_width,
+                                 int available_pixel_height,
+                                 WordWrapBehavior wrap_behavior,
+                                 std::vector<string16>* lines);
+
+// Truncates the string to length characters. This breaks the string at
+// the first word break before length, adding the horizontal ellipsis
+// character (unicode character 0x2026) to render ...
+// The supplied string is returned if the string has length characters or
+// less.
+UI_EXPORT string16 TruncateString(const string16& string, size_t length);
 
 }  // namespace gfx
 

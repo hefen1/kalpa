@@ -152,12 +152,12 @@
 
           # Enable HiDPI on Mac OS and Chrome OS.
           ['OS=="mac" or chromeos==1', {
-            'enable_hidpi%': 1,
+            'enable_hidpi%': 0,
           }],
 
           # Enable touch UI on Metro.
           ['OS=="win"', {
-            'enable_touch_ui%': 1,
+            'enable_touch_ui%': 0,
           }],
 
           # Enable App Launcher only on ChromeOS, Windows and OSX.

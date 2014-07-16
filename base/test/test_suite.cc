@@ -13,7 +13,7 @@
 #include "base/debug/stack_trace.h"
 #include "base/file_util.h"
 #include "base/files/file_path.h"
-//YY #include "base/i18n/icu_util.h"
+#include "base/i18n/icu_util.h"
 #include "base/logging.h"
 #include "base/memory/scoped_ptr.h"
 #include "base/path_service.h"
@@ -278,7 +278,7 @@ void TestSuite::Initialize() {
     logging::SetLogAssertHandler(UnitTestAssertHandler);
   }
 
-//YY  base::i18n::InitializeICU();
+  base::i18n::InitializeICU();
 
   CatchMaybeTests();
   ResetCommandLine();

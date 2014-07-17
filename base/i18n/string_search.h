@@ -7,7 +7,7 @@
 
 #include "base/i18n/base_i18n_export.h"
 #include "base/strings/string16.h"
-
+/*
 struct UStringSearch;
 
 namespace base {
@@ -49,5 +49,5 @@ class BASE_I18N_EXPORT FixedPatternStringSearchIgnoringCaseAndAccents {
 
 }  // namespace i18n
 }  // namespace base
-
+*/
 #endif  // BASE_I18N_STRING_SEARCH_H_

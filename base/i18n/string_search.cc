@@ -5,6 +5,7 @@
 #include "base/i18n/string_search.h"
 #include "base/logging.h"
 
+/* todo(hege)
 #include "third_party/icu/source/i18n/unicode/usearch.h"
 
 namespace base {
@@ -78,3 +79,4 @@ bool StringSearchIgnoringCaseAndAccents(const string16& find_this,
 
 }  // namespace i18n
 }  // namespace base
+*/

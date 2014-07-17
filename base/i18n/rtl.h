@@ -61,8 +61,8 @@ BASE_I18N_EXPORT bool IsRTL();
 BASE_I18N_EXPORT bool ICUIsRTL();
 
 // Returns the text direction for |locale_name|.
-BASE_I18N_EXPORT TextDirection GetTextDirectionForLocale(
-    const char* locale_name);
+//BASE_I18N_EXPORT TextDirection GetTextDirectionForLocale(
+//    const char* locale_name);
 
 // Given the string in |text|, returns the directionality of the first
 // character with strong directionality in the string. If no character in the
@@ -79,7 +79,7 @@ BASE_I18N_EXPORT TextDirection GetFirstStrongCharacterDirection(
 // LTR and RTL strong directionality characters. Defaults to LEFT_TO_RIGHT if
 // the string does not contain directionality characters. Please refer to
 // http://unicode.org/reports/tr9/ for more information.
-BASE_I18N_EXPORT TextDirection GetStringDirection(const string16& text);
+//BASE_I18N_EXPORT TextDirection GetStringDirection(const string16& text);
 
 // Given the string in |text|, this function modifies the string in place with
 // the appropriate Unicode formatting marks that mark the string direction

@@ -15,6 +15,7 @@
 #include "ui/gfx/shadow_value.h"
 #include "ui/gfx/text_elider.h"
 #include "ui/gfx/text_utils.h"
+#include "base/third_party/icu/icu_utf.h"
 
 namespace gfx {
 
@@ -426,7 +427,7 @@ void Canvas::DrawFadeTruncatingStringRect(
 
       if (desired_characters_to_truncate_from_head) {
         // Make sure to clip the text at a UTF16 boundary.
-        U16_SET_CP_LIMIT(text.data(), 0,
+        CBU16_SET_CP_LIMIT(text.data(), 0,
                          desired_characters_to_truncate_from_head,
                          text.length());
         clipped_text = text.substr(desired_characters_to_truncate_from_head);

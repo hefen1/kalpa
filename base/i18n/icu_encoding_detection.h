@@ -11,7 +11,7 @@
 #include "base/i18n/base_i18n_export.h"
 
 namespace base {
-
+/*
 // Detect encoding of |text| and put the name of encoding (as returned by ICU)
 // in |encoding|. For ASCII texts |encoding| will be set to an empty string.
 // Returns true on success.
@@ -24,7 +24,7 @@ BASE_I18N_EXPORT bool DetectEncoding(const std::string& text,
 // the caller is responsible for handling that.
 BASE_I18N_EXPORT bool DetectAllEncodings(const std::string& text,
                                          std::vector<std::string>* encodings);
-
+*/
 }  // namespace base
 
 #endif  // BASE_I18N_ICU_ENCODING_DETECTION_H_

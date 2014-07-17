@@ -12,9 +12,9 @@
 
 #include "base/i18n/string_compare.h"
 #include "base/memory/scoped_ptr.h"
-#include "third_party/icu/source/i18n/unicode/coll.h"
+//#include "third_party/icu/source/i18n/unicode/coll.h"
 #include "ui/base/ui_export.h"
-
+/*
 namespace l10n_util {
 
 // Used by SortStringsUsingMethod. Invokes a method on the objects passed to
@@ -146,5 +146,5 @@ void SortVectorWithStringKey(const std::string& locale,
 }
 
 }  // namespace l10n_util
-
+*/
 #endif  // UI_BASE_L10N_L10N_UTIL_COLLATOR_H_

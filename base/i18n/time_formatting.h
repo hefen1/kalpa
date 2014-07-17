@@ -10,7 +10,7 @@
 
 #include "base/i18n/base_i18n_export.h"
 #include "base/strings/string16.h"
-
+/*
 namespace base {
 
 class Time;
@@ -62,5 +62,5 @@ BASE_I18N_EXPORT string16 TimeFormatFriendlyDate(const Time& time);
 BASE_I18N_EXPORT HourClockType GetHourClockType();
 
 }  // namespace base
-
+*/
 #endif  // BASE_I18N_TIME_FORMATTING_H_

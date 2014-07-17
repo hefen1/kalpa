@@ -69,13 +69,13 @@
 //#include "net/base/winsock_init.h"
 #endif
 //#include "net/http/http_content_disposition.h"
-#include "third_party/icu/source/common/unicode/uidna.h"
-#include "third_party/icu/source/common/unicode/uniset.h"
-#include "third_party/icu/source/common/unicode/uscript.h"
-#include "third_party/icu/source/common/unicode/uset.h"
-#include "third_party/icu/source/i18n/unicode/datefmt.h"
-#include "third_party/icu/source/i18n/unicode/regex.h"
-#include "third_party/icu/source/i18n/unicode/ulocdata.h"
+//#include "third_party/icu/source/common/unicode/uidna.h"
+//#include "third_party/icu/source/common/unicode/uniset.h"
+//#include "third_party/icu/source/common/unicode/uscript.h"
+//#include "third_party/icu/source/common/unicode/uset.h"
+//#include "third_party/icu/source/i18n/unicode/datefmt.h"
+//#include "third_party/icu/source/i18n/unicode/regex.h"
+//#include "third_party/icu/source/i18n/unicode/ulocdata.h"
 
 using base::Time;
 
@@ -165,7 +165,7 @@ static const int kAllowedFtpPorts[] = {
   21,   // ftp data
   22,   // ssh
 };
-
+/*
 // Does some simple normalization of scripts so we can allow certain scripts
 // to exist together.
 // TODO(brettw) bug 880223: we should allow some other languages to be
@@ -209,7 +209,7 @@ bool IsIDNComponentInSingleScript(const base::char16* str, int str_len) {
   }
   return true;
 }
-
+*/
 // Check if the script of a language can be 'safely' mixed with
 // Latin letters in the ASCII range.
 bool IsCompatibleWithASCIILetters(const std::string& lang) {
@@ -221,8 +221,8 @@ bool IsCompatibleWithASCIILetters(const std::string& lang) {
          !lang.substr(0, 2).compare("ko");
 }
 
-typedef std::map<std::string, icu::UnicodeSet*> LangToExemplarSetMap;
-
+//typedef std::map<std::string, icu::UnicodeSet*> LangToExemplarSetMap;
+/*
 class LangToExemplarSet {
  public:
   static LangToExemplarSet* GetInstance() {
@@ -397,7 +397,7 @@ bool IsIDNComponentSafe(const base::char16* str,
   }
   return false;
 }
-
+*/
 // Converts one component of a host (between dots) to IDN if safe. The result
 // will be APPENDED to the given output string and will be the same as the input
 // if it is not IDN or the IDN is unsafe to display.  Returns whether any
@@ -419,6 +419,7 @@ bool IDNToUnicodeOneComponent(const base::char16* comp,
     // documented, so we'll just grow by 2x. This should be rare and is not on a
     // critical path.
     size_t original_length = out->length();
+    /* todo(hege)
     for (int extra_space = 64; ; extra_space *= 2) {
       UErrorCode status = U_ZERO_ERROR;
       out->resize(out->length() + extra_space);
@@ -436,6 +437,7 @@ bool IDNToUnicodeOneComponent(const base::char16* comp,
       if (status != U_BUFFER_OVERFLOW_ERROR)
         break;
     }
+    */
     // Failed, revert back to original string.
     out->resize(original_length);
   }
@@ -765,16 +767,16 @@ std::string GetFileNameFromURL(const GURL& url,
     // TODO(jshin): this is probably not robust enough. To be sure, we need
     // encoding detection.
     base::string16 utf16_output;
-    if (!referrer_charset.empty() &&
-        base::CodepageToUTF16(unescaped_url_filename,
-                              referrer_charset.c_str(),
-                              base::OnStringConversionError::FAIL,
-                              &utf16_output)) {
-      decoded_filename = UTF16ToUTF8(utf16_output);
-    } else {
+    //if (!referrer_charset.empty() &&
+    //    base::CodepageToUTF16(unescaped_url_filename,
+    //                          referrer_charset.c_str(),
+    //                          base::OnStringConversionError::FAIL,
+    //                          &utf16_output)) {
+    //  decoded_filename = UTF16ToUTF8(utf16_output);
+    //} else {
       decoded_filename = WideToUTF8(
           base::SysNativeMBToWide(unescaped_url_filename));
-    }
+    //}
   }
   // If the URL contains a (possibly empty) query, assume it is a generator, and
   // allow the determined extension to be overwritten.
@@ -1266,7 +1268,7 @@ base::string16 GetSuggestedFilename(const GURL& url,
       base::FilePath::StringType(kFinalFallbackName);
     overwrite_extension = false;
   }
-  file_util::ReplaceIllegalCharactersInPath(&result_str, '-');
+  //file_util::ReplaceIllegalCharactersInPath(&result_str, '-');
   base::FilePath result(result_str);
   
   // todo(hege)

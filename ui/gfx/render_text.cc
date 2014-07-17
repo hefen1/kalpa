@@ -9,8 +9,8 @@
 #include "base/i18n/break_iterator.h"
 #include "base/logging.h"
 #include "base/stl_util.h"
-#include "third_party/icu/source/common/unicode/rbbi.h"
-#include "third_party/icu/source/common/unicode/utf16.h"
+//#include "third_party/icu/source/common/unicode/rbbi.h"
+//#include "third_party/icu/source/common/unicode/utf16.h"
 #include "third_party/skia/include/core/SkTypeface.h"
 #include "third_party/skia/include/effects/SkGradientShader.h"
 #include "ui/gfx/canvas.h"
@@ -19,6 +19,7 @@
 #include "ui/gfx/text_constants.h"
 #include "ui/gfx/text_elider.h"
 #include "ui/gfx/utf16_indexing.h"
+#include "base/third_party/icu/icu_utf.h"
 
 namespace gfx {
 
@@ -505,7 +506,7 @@ void RenderText::SelectWord() {
     SelectAll(false);
     return;
   }
-
+  /* todo(hege)
   size_t selection_max = selection().GetMax();
 
   base::i18n::BreakIterator iter(text(), base::i18n::BreakIterator::BREAK_WORD);
@@ -533,7 +534,7 @@ void RenderText::SelectWord() {
 
   const bool reversed = selection().is_reversed();
   MoveCursorTo(reversed ? selection_max : selection_min, false);
-  MoveCursorTo(reversed ? selection_min : selection_max, true);
+  MoveCursorTo(reversed ? selection_min : selection_max, true);*/
 }
 
 const Range& RenderText::GetCompositionRange() const {
@@ -843,7 +844,7 @@ const base::string16& RenderText::GetLayoutText() const {
 const BreakList<size_t>& RenderText::GetLineBreaks() {
   if (line_breaks_.max() != 0)
     return line_breaks_;
-
+  /*todo(hege)
   const string16& layout_text = GetLayoutText();
   const size_t text_length = layout_text.length();
   line_breaks_.SetValue(0);
@@ -856,7 +857,7 @@ const BreakList<size_t>& RenderText::GetLineBreaks() {
     do {
       line_breaks_.ApplyValue(iter.pos(), Range(iter.pos(), text_length));
     } while (iter.Advance());
-  }
+  }*/
   return line_breaks_;
 }
 
@@ -1056,10 +1057,10 @@ void RenderText::UpdateLayoutText() {
         obscured_reveal_index_ < static_cast<int>(text_.length())) {
       // Gets the index range in |text_| to be revealed.
       size_t start = obscured_reveal_index_;
-      U16_SET_CP_START(text_.data(), 0, start);
+      CBU16_SET_CP_START(text_.data(), 0, start);
       size_t end = start;
-      UChar32 unused_char;
-      U16_NEXT(text_.data(), end, text_.length(), unused_char);
+      uint32 unused_char;
+      CBU16_NEXT(text_.data(), end, text_.length(), unused_char);
 
       // Gets the index in |layout_text_| to be replaced.
       const size_t cp_start =
@@ -1068,14 +1069,14 @@ void RenderText::UpdateLayoutText() {
         layout_text_.replace(cp_start, 1, text_.substr(start, end - start));
     }
   }
-
+  /* todo(hege)
   const base::string16& text = obscured_ ? layout_text_ : text_;
   if (truncate_length_ > 0 && truncate_length_ < text.length()) {
     // Truncate the text at a valid character break and append an ellipsis.
     icu::StringCharacterIterator iter(text.c_str());
     iter.setIndex32(truncate_length_ - 1);
     layout_text_.assign(text.substr(0, iter.getIndex()) + gfx::kEllipsisUTF16);
-  }
+  }*/
 }
 
 void RenderText::UpdateCachedBoundsAndOffset() {

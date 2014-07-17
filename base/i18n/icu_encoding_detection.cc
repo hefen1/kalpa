@@ -7,8 +7,8 @@
 #include <set>
 
 #include "base/strings/string_util.h"
-#include "third_party/icu/source/i18n/unicode/ucsdet.h"
-
+//#include "third_party/icu/source/i18n/unicode/ucsdet.h"
+/* todo(hege)
 namespace base {
 
 bool DetectEncoding(const std::string& text, std::string* encoding) {
@@ -102,3 +102,4 @@ bool DetectAllEncodings(const std::string& text,
 }
 
 }  // namespace base
+*/

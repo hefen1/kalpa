@@ -282,8 +282,8 @@
       'dependencies': [
         'base',
         'third_party/dynamic_annotations/dynamic_annotations.gyp:dynamic_annotations',
-        '../third_party/icu/icu.gyp:icui18n',
-        '../third_party/icu/icu.gyp:icuuc',
+        #'../third_party/icu/icu.gyp:icui18n',
+        #'../third_party/icu/icu.gyp:icuuc',
       ],
       'conditions': [
         ['toolkit_uses_gtk==1', {
@@ -492,15 +492,15 @@
         'gmock_unittest.cc',
         'guid_unittest.cc',
         'id_map_unittest.cc',
-        'i18n/break_iterator_unittest.cc',
-        'i18n/char_iterator_unittest.cc',
-        'i18n/case_conversion_unittest.cc',
-        'i18n/file_util_icu_unittest.cc',
-        'i18n/icu_string_conversions_unittest.cc',
-        'i18n/number_formatting_unittest.cc',
-        'i18n/rtl_unittest.cc',
-        'i18n/string_search_unittest.cc',
-        'i18n/time_formatting_unittest.cc',
+        #'i18n/break_iterator_unittest.cc',
+        #'i18n/char_iterator_unittest.cc',
+        #'i18n/case_conversion_unittest.cc',
+        #'i18n/file_util_icu_unittest.cc',
+        #'i18n/icu_string_conversions_unittest.cc',
+        #'i18n/number_formatting_unittest.cc',
+        #'i18n/rtl_unittest.cc',
+        #'i18n/string_search_unittest.cc',
+        #'i18n/time_formatting_unittest.cc',
         'ini_parser_unittest.cc',
         'ios/device_util_unittest.mm',
         'json/json_parser_unittest.cc',
@@ -663,8 +663,8 @@
         'third_party/dynamic_annotations/dynamic_annotations.gyp:dynamic_annotations',
         '../testing/gmock.gyp:gmock',
         '../testing/gtest.gyp:gtest',
-        '../third_party/icu/icu.gyp:icui18n',
-        '../third_party/icu/icu.gyp:icuuc',
+        #'../third_party/icu/icu.gyp:icui18n',
+        #'../third_party/icu/icu.gyp:icuuc',
       ],
       'includes': ['../build/nocompile.gypi'],
       'variables': {
@@ -772,7 +772,7 @@
           # This is needed to trigger the dll copy step on windows.
           # TODO(mark): This should not be necessary.
           'dependencies': [
-            '../third_party/icu/icu.gyp:icudata',
+            #'../third_party/icu/icu.gyp:icudata',
           ],
           'sources!': [
             'file_descriptor_shuffle_unittest.cc',

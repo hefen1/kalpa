@@ -25,9 +25,9 @@
 #include "base/strings/sys_string_conversions.h"
 #include "base/strings/utf_string_conversions.h"
 #include "build/build_config.h"
-#include "third_party/icu/source/common/unicode/rbbi.h"
-#include "third_party/icu/source/common/unicode/uloc.h"
-#include "ui/base/l10n/l10n_util_collator.h"
+//#include "third_party/icu/source/common/unicode/rbbi.h"
+//#include "third_party/icu/source/common/unicode/uloc.h"
+//#include "ui/base/l10n/l10n_util_collator.h"
 #include "ui/base/l10n/l10n_util_plurals.h"
 #include "ui/base/resource/resource_bundle.h"
 #include "ui/base/ui_base_paths.h"
@@ -223,11 +223,12 @@ bool IsLocalePartiallyPopulated(const std::string& locale_name) {
 
 #if !defined(OS_MACOSX)
 bool IsLocaleAvailable(const std::string& locale) {
+  /*
   // If locale has any illegal characters in it, we don't want to try to
   // load it because it may be pointing outside the locale data file directory.
   if (!file_util::IsFilenameLegal(ASCIIToUTF16(locale)))
     return false;
-
+*/
   // IsLocalePartiallyPopulated() can be called here for an early return w/o
   // checking the resource availability below. It'd help when Chrome is run
   // under a system locale Chrome is not localized to (e.g.Farsi on Linux),
@@ -345,10 +346,11 @@ void AdjustParagraphDirectionality(string16* paragraph) {
 
 #if defined(OS_WIN)
 std::string GetCanonicalLocale(const std::string& locale) {
-  return base::i18n::GetCanonicalLocale(locale.c_str());
+  //return base::i18n::GetCanonicalLocale(locale.c_str());
+  return locale;
 }
 #endif
-
+/*
 struct AvailableLocalesTraits :
     base::DefaultLazyInstanceTraits<std::vector<std::string> > {
   static std::vector<std::string>* New(void* instance) {
@@ -388,7 +390,7 @@ struct AvailableLocalesTraits :
 
 base::LazyInstance<std::vector<std::string>, AvailableLocalesTraits >
     g_available_locales = LAZY_INSTANCE_INITIALIZER;
-
+*/
 }  // namespace
 
 namespace l10n_util {
@@ -476,7 +478,7 @@ std::string GetApplicationLocale(const std::string& pref_locale) {
   std::vector<std::string>::const_iterator i = candidates.begin();
   for (; i != candidates.end(); ++i) {
     if (CheckAndResolveLocale(*i, &resolved_locale)) {
-      base::i18n::SetICUDefaultLocale(resolved_locale);
+      //base::i18n::SetICUDefaultLocale(resolved_locale);
       return resolved_locale;
     }
   }
@@ -484,7 +486,7 @@ std::string GetApplicationLocale(const std::string& pref_locale) {
   // Fallback on en-US.
   const std::string fallback_locale("en-US");
   if (IsLocaleAvailable(fallback_locale)) {
-    base::i18n::SetICUDefaultLocale(fallback_locale);
+    //base::i18n::SetICUDefaultLocale(fallback_locale);
     return fallback_locale;
   }
 
@@ -505,7 +507,12 @@ bool IsLocaleNameTranslated(const char* locale,
   // locale code.
   return !IsStringASCII(display_name) || UTF16ToASCII(display_name) != locale;
 }
-
+string16 GetDisplayNameForLocale(const std::string& locale,
+  const std::string& display_locale,
+  bool is_for_ui) {
+    return UTF8ToUTF16(display_locale);
+}
+/*
 string16 GetDisplayNameForLocale(const std::string& locale,
                                  const std::string& display_locale,
                                  bool is_for_ui) {
@@ -558,7 +565,7 @@ string16 GetDisplayNameForLocale(const std::string& locale,
     base::i18n::AdjustStringForLocaleDirection(&display_name);
   return display_name;
 }
-
+*/
 string16 GetDisplayNameForCountry(const std::string& country_code,
                                   const std::string& display_locale) {
   return GetDisplayNameForLocale("_" + country_code, display_locale, false);
@@ -570,7 +577,7 @@ std::string NormalizeLocale(const std::string& locale) {
 
   return normalized_locale;
 }
-
+/*
 void GetParentLocales(const std::string& current_locale,
                       std::vector<std::string>* parent_locales) {
   std::string locale(NormalizeLocale(current_locale));
@@ -586,10 +593,10 @@ void GetParentLocales(const std::string& current_locale,
     parent_locales->push_back(parent);
   }
 }
-
+*/
 bool IsValidLocaleSyntax(const std::string& locale) {
   // Check that the length is plausible.
-  if (locale.size() < 2 || locale.size() >= ULOC_FULLNAME_CAPACITY)
+  if (locale.size() < 2 /*|| locale.size() >= ULOC_FULLNAME_CAPACITY*/)
     return false;
 
   // Strip off the part after an '@' sign, which might contain keywords,
@@ -819,7 +826,7 @@ string16 GetStringFUTF16Int(int message_id, int a) {
 string16 GetStringFUTF16Int(int message_id, int64 a) {
   return GetStringFUTF16(message_id, UTF8ToUTF16(base::Int64ToString(a)));
 }
-
+/*
 // Specialization of operator() method for string16 version.
 template <>
 bool StringComparator<string16>::operator()(const string16& lhs,
@@ -880,5 +887,5 @@ int GetLocalizedContentsWidthInPixels(int pixel_resource_id) {
   DCHECK_GT(width, 0);
   return width;
 }
-
+*/
 }  // namespace l10n_util

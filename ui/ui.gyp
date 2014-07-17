@@ -22,8 +22,8 @@
         '../base/third_party/dynamic_annotations/dynamic_annotations.gyp:dynamic_annotations',
         #'../net/net.gyp:net',
         '../skia/skia.gyp:skia',
-        '../third_party/icu/icu.gyp:icui18n',
-        '../third_party/icu/icu.gyp:icuuc',
+        #'../third_party/icu/icu.gyp:icui18n',
+        #'../third_party/icu/icu.gyp:icuuc',
         '../third_party/libpng/libpng.gyp:libpng',
         '../third_party/zlib/zlib.gyp:zlib',
         '../url/url.gyp:url_lib',
@@ -38,8 +38,8 @@
       # Export these dependencies since text_elider.h includes ICU headers.
       'export_dependent_settings': [
         #'../net/net.gyp:net',
-        '../third_party/icu/icu.gyp:icui18n',
-        '../third_party/icu/icu.gyp:icuuc',
+        #'../third_party/icu/icu.gyp:icui18n',
+        #'../third_party/icu/icu.gyp:icuuc',
       ],
       'sources' : [
         #'android/ui_jni_registrar.cc',

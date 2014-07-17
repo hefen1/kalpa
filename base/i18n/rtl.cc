@@ -9,15 +9,68 @@
 #include "base/strings/string_util.h"
 #include "base/strings/sys_string_conversions.h"
 #include "base/strings/utf_string_conversions.h"
-#include "third_party/icu/source/common/unicode/locid.h"
-#include "third_party/icu/source/common/unicode/uchar.h"
-#include "third_party/icu/source/common/unicode/uscript.h"
-#include "third_party/icu/source/i18n/unicode/coll.h"
-
+//#include "third_party/icu/source/common/unicode/locid.h"
+//#include "third_party/icu/source/common/unicode/uchar.h"
+//#include "third_party/icu/source/common/unicode/uscript.h"
+//#include "third_party/icu/source/i18n/unicode/coll.h"
+#include "base/third_party/icu/icu_utf.h"
 #if defined(TOOLKIT_GTK)
 #include <gtk/gtk.h>
 #endif
 
+//////////////////////////////////////////////////////////////////////////
+
+#include <windows.h>
+namespace {
+
+// define some other languages until ntdefs.h catches up
+#ifndef LANG_NAPALI
+#define LANG_NAPALI     0x61
+#endif
+#ifndef LANG_BURMESE
+#define LANG_BURMESE    0x55 // Burma
+#endif
+#ifndef LANG_YIDDISH
+#define LANG_YIDDISH    0x3d
+#endif
+
+   bool IsRTLLang(LANGID lang){
+     switch(lang){
+     case LANG_ARABIC:
+     case LANG_HEBREW:
+     case LANG_URDU:
+     case LANG_FARSI:
+     case LANG_YIDDISH:
+     case LANG_SINDHI:
+     case LANG_KASHMIRI:
+       return true;
+     }
+
+     return false;
+   }
+
+   bool IsRtlLCID(LCID lcid){
+     return IsRTLLang(PRIMARYLANGID(LANGIDFROMLCID(lcid)));
+   }
+
+#define IN_RANGE(n1, b, n2) ((unsigned)((b)-n1)<=n2-n1)
+
+   inline BOOL IsRTLCharCore(WCHAR ch){
+     // Bitmask of RLM, RLE, RLO, based from RLM in the 0 bit.
+#define MASK_RTLPUNCT   0x90000001
+
+     return (IN_RANGE(0x0590, ch, 0x08ff) || // In RTL block
+       (IN_RANGE(0x200f, ch, 0x202e) &&    // Possible RTL punct char
+       ((MASK_RTLPUNCT>>(ch-0x200f))&1))); // Mask of RTL punct chars
+   }
+
+   inline BOOL IsRTLChar(WCHAR ch){
+     return (IN_RANGE(0x0590/* First RTL char */, ch, 0x202e/* RLO */) &&
+       IsRTLCharCore(ch));
+   }
+ }
+
+/* todo(hege)
 namespace {
 
 // Extract language, country and variant, but ignore keywords.  For example,
@@ -65,23 +118,26 @@ base::i18n::TextDirection GetCharacterDirection(UChar32 character) {
 }
 
 }  // namespace
+*/
 
 namespace base {
 namespace i18n {
-
+/*
 // Represents the locale-specific ICU text direction.
 static TextDirection g_icu_text_direction = UNKNOWN_DIRECTION;
-
+*/
 // Convert the ICU default locale to a string.
 std::string GetConfiguredLocale() {
-  return GetLocaleString(icu::Locale::getDefault());
+  //return GetLocaleString(icu::Locale::getDefault());
+  return "en-US";
 }
 
 // Convert the ICU canonicalized locale to a string.
 std::string GetCanonicalLocale(const char* locale) {
-  return GetLocaleString(icu::Locale::createCanonical(locale));
+  //return GetLocaleString(icu::Locale::createCanonical(locale));
+  return std::string(locale);
 }
-
+/*
 // Convert Chrome locale name to ICU locale name
 std::string ICULocaleName(const std::string& locale_string) {
   // If not Spanish, just return it.
@@ -109,8 +165,9 @@ std::string ICULocaleName(const std::string& locale_string) {
   // more specific "es-RR".
   return locale_string;
 }
-
+*/
 void SetICUDefaultLocale(const std::string& locale_string) {
+/*
   icu::Locale locale(ICULocaleName(locale_string).c_str());
   UErrorCode error_code = U_ZERO_ERROR;
   icu::Locale::setDefault(locale, error_code);
@@ -120,17 +177,24 @@ void SetICUDefaultLocale(const std::string& locale_string) {
   // it does not hurt to have it as a sanity check.
   DCHECK(U_SUCCESS(error_code));
   g_icu_text_direction = UNKNOWN_DIRECTION;
+  */
 }
 
 bool IsRTL() {
-#if defined(TOOLKIT_GTK)
-  GtkTextDirection gtk_dir = gtk_widget_get_default_direction();
-  return gtk_dir == GTK_TEXT_DIR_RTL;
-#else
-  return ICUIsRTL();
-#endif
+//#if defined(TOOLKIT_GTK)
+//  GtkTextDirection gtk_dir = gtk_widget_get_default_direction();
+//  return gtk_dir == GTK_TEXT_DIR_RTL;
+//#else
+//  return ICUIsRTL();
+//#endif
+  return IsRtlLCID(GetThreadLocale());
 }
 
+bool ICUIsRTL() {
+  return IsRTL();
+}
+
+/*
 bool ICUIsRTL() {
   if (g_icu_text_direction == UNKNOWN_DIRECTION) {
     const icu::Locale& locale = icu::Locale::getDefault();
@@ -146,23 +210,25 @@ TextDirection GetTextDirectionForLocale(const char* locale_name) {
   // Treat anything other than RTL as LTR.
   return (layout_dir != ULOC_LAYOUT_RTL) ? LEFT_TO_RIGHT : RIGHT_TO_LEFT;
 }
-
+*/
 TextDirection GetFirstStrongCharacterDirection(const string16& text) {
-  const UChar* string = text.c_str();
+  const wchar_t* string = text.c_str();
   size_t length = text.length();
   size_t position = 0;
   while (position < length) {
-    UChar32 character;
+    uint32 character;
     size_t next_position = position;
-    U16_NEXT(string, next_position, length, character);
-    TextDirection direction = GetCharacterDirection(character);
-    if (direction != UNKNOWN_DIRECTION)
-      return direction;
+    CBU16_NEXT(string, next_position, length, character);
+    //TextDirection direction = GetCharacterDirection(character);
+    //if (direction != UNKNOWN_DIRECTION)
+    //  return direction;
+    if(IsRTLChar(character))
+      return RIGHT_TO_LEFT;
     position = next_position;
   }
   return LEFT_TO_RIGHT;
 }
-
+/*
 TextDirection GetStringDirection(const string16& text) {
   const UChar* string = text.c_str();
   size_t length = text.length();
@@ -189,7 +255,7 @@ TextDirection GetStringDirection(const string16& text) {
 
   return result;
 }
-
+*/
 #if defined(OS_WIN)
 bool AdjustStringForLocaleDirection(string16* text) {
   if (!IsRTL() || text->empty())
@@ -290,7 +356,7 @@ bool UnadjustStringForLocaleDirection(string16* text) {
 }
 
 #endif  // !OS_WIN
-
+/*
 bool StringContainsStrongRTLChars(const string16& text) {
   const UChar* string = text.c_str();
   size_t length = text.length();
@@ -309,6 +375,16 @@ bool StringContainsStrongRTLChars(const string16& text) {
     position = next_position;
   }
 
+  return false;
+}
+*/
+bool StringContainsStrongRTLChars(const string16& text){
+  size_t length = text.length();
+  for(size_t i=0; i<length; ++i){
+    if(IsRTLChar(text[i])){
+      return true;
+    }
+  }
   return false;
 }
 

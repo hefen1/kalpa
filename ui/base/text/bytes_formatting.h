@@ -8,7 +8,7 @@
 #include "base/basictypes.h"
 #include "base/strings/string16.h"
 #include "ui/base/ui_export.h"
-
+/*
 namespace ui {
 
 // Simple API ------------------------------------------------------------------
@@ -52,5 +52,5 @@ UI_EXPORT string16 FormatBytesWithUnits(int64 bytes, DataUnits units,
 string16 FormatSpeedWithUnits(int64 bytes, DataUnits units, bool show_units);
 
 }  // namespace ui
-
+*/
 #endif  // UI_BASE_TEXT_BYTES_FORMATTING_H_

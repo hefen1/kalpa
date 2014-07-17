@@ -603,7 +603,7 @@ void TableView::SortItemsAndUpdateMapping() {
     }
     for (int i = 0; i < row_count; ++i)
       model_to_view_[view_to_model_[i]] = i;
-    model_->ClearCollator();
+    //model_->ClearCollator();
   }
   SchedulePaint();
 }

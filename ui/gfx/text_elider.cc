@@ -24,8 +24,9 @@
 #include "ui/net/escape.h"
 #include "ui/net/net_util.h"
 //#include "ui/net/registry_controlled_domains/registry_controlled_domain.h"
-#include "third_party/icu/source/common/unicode/rbbi.h"
-#include "third_party/icu/source/common/unicode/uloc.h"
+//#include "third_party/icu/source/common/unicode/rbbi.h"
+//#include "third_party/icu/source/common/unicode/uloc.h"
+#include "base/third_party/icu/icu_utf.h"
 #include "ui/gfx/font_list.h"
 #include "ui/gfx/text_utils.h"
 #include "url/gurl.h"
@@ -77,7 +78,7 @@ class StringSlicer {
   size_t FindValidBoundaryBefore(size_t index) const {
     DCHECK_LE(index, text_.length());
     if (index != text_.length())
-      U16_SET_CP_START(text_.data(), 0, index);
+      CBU16_SET_CP_START(text_.data(), 0, index);
     return index;
   }
 
@@ -85,7 +86,7 @@ class StringSlicer {
   size_t FindValidBoundaryAfter(size_t index) const {
     DCHECK_LE(index, text_.length());
     if (index != text_.length())
-      U16_SET_CP_LIMIT(text_.data(), 0, index, text_.length());
+      CBU16_SET_CP_LIMIT(text_.data(), 0, index, text_.length());
     return index;
   }
 
@@ -535,7 +536,7 @@ string16 ElideText(const string16& text,
   return ElideText(text, gfx::FontList(font), available_pixel_width,
                    elide_behavior);
 }
-
+/*
 SortedDisplayURL::SortedDisplayURL(const GURL& url,
                                    const std::string& languages) {
   net::AppendFormattedHost(url, languages, &sort_host_);
@@ -605,7 +606,7 @@ string16 SortedDisplayURL::AfterHost() const {
   }
   return display_url_.substr(slash_index + sort_host_.length());
 }
-
+*/
 bool ElideString(const string16& input, int max_len, string16* output) {
   DCHECK_GE(max_len, 0);
   if (static_cast<int>(input.length()) <= max_len) {
@@ -642,7 +643,7 @@ bool ElideString(const string16& input, int max_len, string16* output) {
 
   return true;
 }
-
+/*
 namespace {
 
 // Internal class used to track progress of a rectangular string elide
@@ -1072,13 +1073,17 @@ bool RectangleText::NewLine() {
 }
 
 }  // namespace
+*/
 
 bool ElideRectangleString(const string16& input, size_t max_rows,
                           size_t max_cols, bool strict, string16* output) {
-  RectangleString rect(max_rows, max_cols, strict, output);
-  rect.Init();
-  rect.AddString(input);
-  return rect.Finalize();
+  //todo(hege)
+  //RectangleString rect(max_rows, max_cols, strict, output);
+  //rect.Init();
+  //rect.AddString(input);
+  //return rect.Finalize();
+  *output = input;
+  return true;
 }
 
 int ElideRectangleText(const string16& input,
@@ -1087,14 +1092,17 @@ int ElideRectangleText(const string16& input,
                        int available_pixel_height,
                        WordWrapBehavior wrap_behavior,
                        std::vector<string16>* lines) {
-  RectangleText rect(font_list,
-                     available_pixel_width,
-                     available_pixel_height,
-                     wrap_behavior,
-                     lines);
-  rect.Init();
-  rect.AddString(input);
-  return rect.Finalize();
+  //todo(hege)
+  //RectangleText rect(font_list,
+  //                   available_pixel_width,
+  //                   available_pixel_height,
+  //                   wrap_behavior,
+  //                   lines);
+  //rect.Init();
+  //rect.AddString(input);
+  //return rect.Finalize();
+  lines->push_back(input);
+  return input.length();
 }
 
 int ElideRectangleText(const string16& input,
@@ -1107,7 +1115,7 @@ int ElideRectangleText(const string16& input,
                             available_pixel_width, available_pixel_height,
                             wrap_behavior, lines);
 }
-
+/*
 string16 TruncateString(const string16& string, size_t length) {
   if (string.size() <= length)
     // String fits, return it.
@@ -1169,5 +1177,5 @@ string16 TruncateString(const string16& string, size_t length) {
   }
   return string.substr(0, index) + kElideString;
 }
-
+*/
 }  // namespace gfx

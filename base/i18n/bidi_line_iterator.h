@@ -8,8 +8,8 @@
 #include "base/basictypes.h"
 #include "base/i18n/base_i18n_export.h"
 #include "base/strings/string16.h"
-#include "third_party/icu/source/common/unicode/ubidi.h"
-
+//#include "third_party/icu/source/common/unicode/ubidi.h"
+/*
 namespace base {
 namespace i18n {
 
@@ -42,5 +42,5 @@ class BASE_I18N_EXPORT BiDiLineIterator {
 
 }  // namespace i18n
 }  // namespace base
-
+*/
 #endif  // BASE_I18N_BIDI_LINE_ITERATOR_H_

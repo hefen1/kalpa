@@ -13,7 +13,7 @@
 #include "base/strings/string_util.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/win/windows_version.h"
-#include "third_party/icu/source/common/unicode/uchar.h"
+//#include "third_party/icu/source/common/unicode/uchar.h"
 #include "ui/gfx/canvas.h"
 #include "ui/gfx/font_fallback_win.h"
 #include "ui/gfx/font_smoothing_win.h"
@@ -590,7 +590,7 @@ SelectionModel RenderTextWin::AdjacentWordSelectionModel(
     VisualCursorDirection direction) {
   if (obscured())
     return EdgeSelectionModel(direction);
-
+  /* todo(hege)
   base::i18n::BreakIterator iter(text(), base::i18n::BreakIterator::BREAK_WORD);
   bool success = iter.Init();
   DCHECK(success);
@@ -630,6 +630,8 @@ SelectionModel RenderTextWin::AdjacentWordSelectionModel(
     }
   }
   return SelectionModel(pos, CURSOR_FORWARD);
+  */
+  return SelectionModel(0, CURSOR_FORWARD);
 }
 
 Range RenderTextWin::GetGlyphBounds(size_t index) {
@@ -917,7 +919,7 @@ void RenderTextWin::ItemizeLogicalText() {
       if (!gfx::IsValidCodePointIndex(layout_text, run_break))
         --run_break;
     }
-
+    /* todo(hege)
     // Break runs between characters in different code blocks. This avoids using
     // fallback fonts for more characters than needed. http://crbug.com/278913
     if (run_break > run->range.start()) {
@@ -933,6 +935,7 @@ void RenderTextWin::ItemizeLogicalText() {
         }
       }
     }
+    */
 
     DCHECK(gfx::IsValidCodePointIndex(layout_text, run_break));
 

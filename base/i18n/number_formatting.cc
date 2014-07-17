@@ -11,9 +11,9 @@
 #include "base/strings/string_util.h"
 #include "base/strings/stringprintf.h"
 #include "base/strings/utf_string_conversions.h"
-#include "third_party/icu/source/common/unicode/ustring.h"
-#include "third_party/icu/source/i18n/unicode/numfmt.h"
-
+//#include "third_party/icu/source/common/unicode/ustring.h"
+//#include "third_party/icu/source/i18n/unicode/numfmt.h"
+/* todo(hege)
 namespace base {
 
 namespace {
@@ -85,3 +85,4 @@ void ResetFormatters() {
 }  // namespace testing
 
 }  // namespace base
+*/

@@ -12,8 +12,8 @@
 
 #include "base/basictypes.h"
 #include "base/strings/string16.h"
-#include "third_party/icu/source/common/unicode/uchar.h"
-#include "third_party/icu/source/i18n/unicode/coll.h"
+//#include "third_party/icu/source/common/unicode/uchar.h"
+//#include "third_party/icu/source/i18n/unicode/coll.h"
 #include "ui/gfx/gfx_export.h"
 
 class GURL;
@@ -105,7 +105,7 @@ UI_EXPORT string16 ElideFilename(const base::FilePath& filename,
 UI_EXPORT string16 ElideFilename(const base::FilePath& filename,
                                  const gfx::Font& font,
                                  int available_pixel_width);
-
+/*
 // SortedDisplayURL maintains a string from a URL suitable for display to the
 // use. SortedDisplayURL also provides a function used for comparing two
 // SortedDisplayURLs for use in visually ordering the SortedDisplayURLs.
@@ -140,7 +140,7 @@ class UI_EXPORT SortedDisplayURL {
 
   DISALLOW_COPY_AND_ASSIGN(SortedDisplayURL);
 };
-
+*/
 // Functions to elide strings when the font information is unknown.  As
 // opposed to the above functions, the ElideString() and
 // ElideRectangleString() functions operate in terms of character units,
@@ -225,7 +225,7 @@ UI_EXPORT int ElideRectangleText(const string16& text,
 // character (unicode character 0x2026) to render ...
 // The supplied string is returned if the string has length characters or
 // less.
-UI_EXPORT string16 TruncateString(const string16& string, size_t length);
+//UI_EXPORT string16 TruncateString(const string16& string, size_t length);
 
 }  // namespace gfx
 

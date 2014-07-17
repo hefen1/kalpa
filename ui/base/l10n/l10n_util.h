@@ -65,8 +65,8 @@ UI_EXPORT std::string NormalizeLocale(const std::string& locale);
 // Produce a vector of parent locales for given locale.
 // It includes the current locale in the result.
 // sr_Cyrl_RS generates sr_Cyrl_RS, sr_Cyrl and sr.
-UI_EXPORT void GetParentLocales(const std::string& current_locale,
-                                std::vector<std::string>* parent_locales);
+//UI_EXPORT void GetParentLocales(const std::string& current_locale,
+//                                std::vector<std::string>* parent_locales);
 
 // Checks if a string is plausibly a syntactically-valid locale string,
 // for cases where we want the valid input to be a locale string such as
@@ -150,7 +150,7 @@ UI_EXPORT std::string GetPluralStringFUTF8(const std::vector<int>& message_ids,
 // In place sorting of string16 strings using collation rules for |locale|.
 UI_EXPORT void SortStrings16(const std::string& locale,
                              std::vector<string16>* strings);
-
+/*
 // Returns a vector of available locale codes. E.g., a vector containing
 // en-US, es, fr, fi, pt-PT, pt-BR, etc.
 UI_EXPORT const std::vector<std::string>& GetAvailableLocales();
@@ -163,7 +163,7 @@ UI_EXPORT void GetAcceptLanguagesForLocale(
 // Returns the preferred size of the contents view of a window based on
 // designer given constraints which might dependent on the language used.
 UI_EXPORT int GetLocalizedContentsWidthInPixels(int pixel_resource_id);
-
+*/
 }  // namespace l10n_util
 
 #endif  // UI_BASE_L10N_L10N_UTIL_H_

@@ -5,7 +5,7 @@
 #include "base/i18n/bidi_line_iterator.h"
 
 #include "base/logging.h"
-
+/* todo(hege)
 namespace base {
 namespace i18n {
 
@@ -58,3 +58,4 @@ void BiDiLineIterator::GetLogicalRun(int start,
 
 }  // namespace i18n
 }  // namespace base
+*/

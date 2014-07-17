@@ -8,7 +8,7 @@
 #include "base/basictypes.h"
 #include "base/strings/string16.h"
 #include "ui/base/ui_export.h"
-
+/*
 namespace base {
 class Time;
 class TimeDelta;
@@ -63,5 +63,5 @@ class UI_EXPORT TimeFormat {
 };
 
 }  // namespace ui
-
+*/
 #endif  // UI_BASE_L10N_TIME_FORMAT_H_

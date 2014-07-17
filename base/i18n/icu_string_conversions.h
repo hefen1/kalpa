@@ -10,7 +10,7 @@
 #include "base/i18n/base_i18n_export.h"
 #include "base/i18n/i18n_constants.h"
 #include "base/strings/string16.h"
-
+/*
 namespace base {
 
 // Defines the error handling modes of UTF16ToCodepage, CodepageToUTF16,
@@ -66,5 +66,5 @@ BASE_I18N_EXPORT bool ConvertToUtf8AndNormalize(const std::string& text,
                                                 std::string* result);
 
 }  // namespace base
-
+*/
 #endif  // BASE_I18N_ICU_STRING_CONVERSIONS_H_

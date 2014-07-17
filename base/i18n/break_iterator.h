@@ -8,7 +8,7 @@
 #include "base/basictypes.h"
 #include "base/i18n/base_i18n_export.h"
 #include "base/strings/string16.h"
-
+/*
 // The BreakIterator class iterates through the words, word breaks, and
 // line breaks in a UTF-16 string.
 //
@@ -127,5 +127,5 @@ class BASE_I18N_EXPORT BreakIterator {
 
 }  // namespace i18n
 }  // namespace base
-
+*/
 #endif  // BASE_I18N_BREAK_ITERATOR_H_

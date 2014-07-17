@@ -12,11 +12,11 @@
 #include <vector>
 
 #include "base/memory/scoped_ptr.h"
-#include "third_party/icu/source/i18n/unicode/plurfmt.h"
-#include "third_party/icu/source/i18n/unicode/plurrule.h"
+//#include "third_party/icu/source/i18n/unicode/plurfmt.h"
+//#include "third_party/icu/source/i18n/unicode/plurrule.h"
 
 namespace l10n_util {
-
+  /*
 // Returns a PluralRules for the current locale.
 scoped_ptr<icu::PluralRules> BuildPluralRules();
 
@@ -24,7 +24,7 @@ scoped_ptr<icu::PluralRules> BuildPluralRules();
 // in order: default, singular, zero, two, few, many.
 scoped_ptr<icu::PluralFormat> BuildPluralFormat(
     const std::vector<int>& message_ids);
-
+ */
 }  // namespace l10n_util
 
 #endif  // UI_BASE_L10N_L10N_UTIL_PLURALS_H_

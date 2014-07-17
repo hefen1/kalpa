@@ -384,6 +384,9 @@ BASE_EXPORT UChar32 utf8_nextCharSafeBody(const uint8 *s, int32 *pi, int32 lengt
     } \
 }
 
+#define CBU16_SET_CP_START(s, start, i) { if(CBU16_IS_TRAIL((s)[i]) && (i)>(start) && CBU16_IS_LEAD((s)[(i)-1])) { --(i); } }
+#define CBU16_SET_CP_LIMIT(s, start, i, length) { if((start)<(i) && (i)<(length) && CBU16_IS_LEAD((s)[(i)-1]) && CBU16_IS_TRAIL((s)[i])) { ++(i); } }
+
 }  // namesapce base_icu
 
 #endif  // BASE_THIRD_PARTY_ICU_ICU_UTF_H_

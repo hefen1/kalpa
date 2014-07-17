@@ -36,7 +36,7 @@ TableColumn::TableColumn(int id, Alignment alignment, int width, float percent)
 // TableModel -----------------------------------------------------------------
 
 // Used for sorting.
-static icu::Collator* collator = NULL;
+//static icu::Collator* collator = NULL;
 
 gfx::ImageSkia TableModel::GetIcon(int row) {
   return gfx::ImageSkia();
@@ -73,15 +73,17 @@ int TableModel::CompareValues(int row1, int row2, int column_id) {
          row2 >= 0 && row2 < RowCount());
   base::string16 value1 = GetText(row1, column_id);
   base::string16 value2 = GetText(row2, column_id);
-  icu::Collator* collator = GetCollator();
+//  icu::Collator* collator = GetCollator();
 
-  if (collator)
-    return base::i18n::CompareString16WithCollator(collator, value1, value2);
+  //todo(hege)
+//  if (collator)
+//    return base::i18n::CompareString16WithCollator(collator, value1, value2);
 
-  NOTREACHED();
-  return 0;
+  //NOTREACHED();
+  //return 0;
+  return lstrcmpW(value1.c_str(), value2.c_str());
 }
-
+/*
 void TableModel::ClearCollator() {
   delete collator;
   collator = NULL;
@@ -98,5 +100,5 @@ icu::Collator* TableModel::GetCollator() {
   }
   return collator;
 }
-
+*/
 }  // namespace ui

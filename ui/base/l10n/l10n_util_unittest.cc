@@ -20,7 +20,7 @@
 #include "base/test/scoped_path_override.h"
 #include "testing/gtest/include/gtest/gtest.h"
 #include "testing/platform_test.h"
-#include "third_party/icu/source/common/unicode/locid.h"
+//#include "third_party/icu/source/common/unicode/locid.h"
 #include "ui/base/l10n/l10n_util.h"
 #include "ui/base/l10n/l10n_util_collator.h"
 #include "ui/base/ui_base_paths.h"
@@ -283,7 +283,7 @@ TEST_F(L10nUtilTest, GetAppLocale) {
   base::i18n::SetICUDefaultLocale(original_locale);
 }
 #endif  // !defined(OS_MACOSX)
-
+/*
 TEST_F(L10nUtilTest, SortStringsUsingFunction) {
   std::vector<StringWrapper*> strings;
   strings.push_back(new StringWrapper(UTF8ToUTF16("C")));
@@ -299,7 +299,7 @@ TEST_F(L10nUtilTest, SortStringsUsingFunction) {
   ASSERT_TRUE(UTF8ToUTF16("d") == strings[3]->string());
   STLDeleteElements(&strings);
 }
-
+*/
 /**
  * Helper method for validating strings that require direcitonal markup.
  * Checks that parentheses are enclosed in appropriate direcitonal markers.
@@ -393,7 +393,7 @@ TEST_F(L10nUtilTest, GetDisplayNameForCountry) {
   result = l10n_util::GetDisplayNameForCountry("xyz", "en");
   EXPECT_EQ(ASCIIToUTF16("XYZ"), result);
 }
-
+/*
 TEST_F(L10nUtilTest, GetParentLocales) {
   std::vector<std::string> locales;
   const std::string top_locale("sr_Cyrl_RS");
@@ -404,7 +404,7 @@ TEST_F(L10nUtilTest, GetParentLocales) {
   EXPECT_EQ("sr_Cyrl", locales[1]);
   EXPECT_EQ("sr", locales[2]);
 }
-
+*/
 TEST_F(L10nUtilTest, IsValidLocaleSyntax) {
   // Test valid locales.
   EXPECT_TRUE(l10n_util::IsValidLocaleSyntax("en"));

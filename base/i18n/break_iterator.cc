@@ -4,6 +4,7 @@
 
 #include "base/i18n/break_iterator.h"
 
+/* todo(hege)
 #include "base/logging.h"
 #include "third_party/icu/source/common/unicode/ubrk.h"
 #include "third_party/icu/source/common/unicode/uchar.h"
@@ -124,3 +125,4 @@ string16 BreakIterator::GetString() const {
 
 }  // namespace i18n
 }  // namespace base
+*/

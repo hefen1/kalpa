@@ -5,7 +5,7 @@
 #include "base/strings/utf_string_conversions.h"
 #include "testing/gtest/include/gtest/gtest.h"
 #include "ui/base/text/bytes_formatting.h"
-
+/*
 namespace ui {
 
 TEST(BytesFormattingTest, GetByteDisplayUnits) {
@@ -28,7 +28,7 @@ TEST(BytesFormattingTest, GetByteDisplayUnits) {
   for (size_t i = 0; i < ARRAYSIZE_UNSAFE(cases); ++i)
     EXPECT_EQ(cases[i].expected, GetByteDisplayUnits(cases[i].bytes));
 }
-/* todo(hege)
+
 TEST(BytesFormattingTest, FormatBytes) {
   static const struct {
     int64 bytes;
@@ -75,5 +75,6 @@ TEST(BytesFormattingTest, FormatBytes) {
               FormatBytesWithUnits(cases[i].bytes, cases[i].units, true));
   }
 }
-*/
+
 }  // namespace ui
+*/

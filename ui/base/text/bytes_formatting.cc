@@ -10,7 +10,7 @@
 #include "base/strings/utf_string_conversions.h"
 #include "grit/ui_strings.h"
 #include "ui/base/l10n/l10n_util.h"
-
+/*
 namespace ui {
 
 namespace {
@@ -108,3 +108,4 @@ string16 FormatSpeed(int64 bytes) {
 }
 
 }  // namespace ui
+*/

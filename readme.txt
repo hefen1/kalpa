@@ -1,3 +1,12 @@
+7.17
+=====
+1. remove icu/tcmalloc/jemalloc
+* gurl (idntoascii)
+* delete icu,and comment i18n/.cc,then fix compile
+2. unittests pass
+* render_text.cc!!!
+3. example pass
+
 7.16
 =====
 1. views-->ui

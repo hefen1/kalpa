@@ -163,8 +163,8 @@ class VIEWS_EXPORT NativeWidgetAura
   virtual void OnKeyEvent(ui::KeyEvent* event) OVERRIDE;
   virtual void OnMouseEvent(ui::MouseEvent* event) OVERRIDE;
   virtual void OnScrollEvent(ui::ScrollEvent* event) OVERRIDE;
-  virtual void OnTouchEvent(ui::TouchEvent* event) OVERRIDE;
-  virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
+  //virtual void OnTouchEvent(ui::TouchEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
 
   // Overridden from aura::client::ActivationDelegate:
   virtual bool ShouldActivate() const OVERRIDE;

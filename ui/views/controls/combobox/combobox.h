@@ -68,7 +68,7 @@ class VIEWS_EXPORT Combobox : public MenuDelegate, public PrefixDelegate {
   virtual bool OnMouseDragged(const ui::MouseEvent& mouse_event) OVERRIDE;
   virtual bool OnKeyPressed(const ui::KeyEvent& e) OVERRIDE;
   virtual bool OnKeyReleased(const ui::KeyEvent& e) OVERRIDE;
-  virtual void OnGestureEvent(ui::GestureEvent* gesture) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* gesture) OVERRIDE;
   virtual void OnPaint(gfx::Canvas* canvas) OVERRIDE;
   virtual void OnFocus() OVERRIDE;
   virtual void OnBlur() OVERRIDE;

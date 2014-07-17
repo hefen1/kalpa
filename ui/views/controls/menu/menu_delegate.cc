@@ -76,8 +76,8 @@ bool MenuDelegate::ShouldExecuteCommandWithoutClosingMenu(int id,
 
 bool MenuDelegate::IsTriggerableEvent(MenuItemView* source,
                                       const ui::Event& e) {
-  return e.type() == ui::ET_GESTURE_TAP ||
-         e.type() == ui::ET_GESTURE_TAP_DOWN ||
+  return //e.type() == ui::ET_GESTURE_TAP ||
+         //e.type() == ui::ET_GESTURE_TAP_DOWN ||
          (e.IsMouseEvent() && (e.flags() &
               (ui::EF_LEFT_MOUSE_BUTTON | ui::EF_RIGHT_MOUSE_BUTTON)));
 }

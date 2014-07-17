@@ -49,7 +49,7 @@ class VIEWS_EXPORT ButtonDropDown : public ImageButton,
   // Showing the drop down results in a MouseCaptureLost, we need to ignore it.
   virtual void OnMouseCaptureLost() OVERRIDE {}
   virtual void OnMouseExited(const ui::MouseEvent& event) OVERRIDE;
-  virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
   virtual void GetAccessibleState(ui::AccessibleViewState* state) OVERRIDE;
 
   // Overridden from views::ContextMenuController

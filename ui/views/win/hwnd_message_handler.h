@@ -274,7 +274,7 @@ class VIEWS_EXPORT HWNDMessageHandler :
     MESSAGE_HANDLER_EX(WM_SYSDEADCHAR, OnImeMessages)
 
     // Touch Events.
-    MESSAGE_HANDLER_EX(WM_TOUCH, OnTouchEvent)
+    //MESSAGE_HANDLER_EX(WM_TOUCH, OnTouchEvent)
 
     // Uses the general handler macro since the specific handler macro
     // MSG_WM_NCACTIVATE would convert WPARAM type to BOOL type. The high
@@ -363,15 +363,15 @@ class VIEWS_EXPORT HWNDMessageHandler :
   void OnSize(UINT param, const CSize& size);
   void OnSysCommand(UINT notification_code, const CPoint& point);
   void OnThemeChanged();
-  LRESULT OnTouchEvent(UINT message, WPARAM w_param, LPARAM l_param);
+  //LRESULT OnTouchEvent(UINT message, WPARAM w_param, LPARAM l_param);
   void OnWindowPosChanging(WINDOWPOS* window_pos);
   void OnWindowPosChanged(WINDOWPOS* window_pos);
 
-  typedef std::vector<ui::TouchEvent> TouchEvents;
+  //typedef std::vector<ui::TouchEvent> TouchEvents;
   // Helper to handle the list of touch events passed in. We need this because
   // touch events on windows don't fire if we enter a modal loop in the context
   // of a touch event.
-  void HandleTouchEvents(const TouchEvents& touch_events);
+  //void HandleTouchEvents(const TouchEvents& touch_events);
 
   HWNDMessageHandlerDelegate* delegate_;
 
@@ -410,7 +410,7 @@ class VIEWS_EXPORT HWNDMessageHandler :
   bool is_right_mouse_pressed_on_caption_;
 
   // The set of touch devices currently down.
-  TouchIDs touch_ids_;
+  //TouchIDs touch_ids_;
 
   // ScopedRedrawLock ----------------------------------------------------------
 
@@ -474,7 +474,7 @@ class VIEWS_EXPORT HWNDMessageHandler :
   base::WeakPtrFactory<HWNDMessageHandler> autohide_factory_;
 
   // Generates touch-ids for touch-events.
-  ui::SequentialIDGenerator id_generator_;
+  //ui::SequentialIDGenerator id_generator_;
 
   DISALLOW_COPY_AND_ASSIGN(HWNDMessageHandler);
 };

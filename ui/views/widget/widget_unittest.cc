@@ -65,13 +65,14 @@ class EventCountView : public View {
   virtual void OnScrollEvent(ui::ScrollEvent* event) OVERRIDE {
     RecordEvent(*event);
   }
+	/*
   virtual void OnTouchEvent(ui::TouchEvent* event) OVERRIDE {
     RecordEvent(*event);
   }
   virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE {
     RecordEvent(*event);
   }
-
+	*/
  private:
   void RecordEvent(const ui::Event& event) {
     ++event_count_[event.type()];
@@ -91,6 +92,7 @@ class ScrollableEventCountView : public EventCountView {
 
  private:
   // Overridden from ui::EventHandler:
+	 /*
   virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE {
     EventCountView::OnGestureEvent(event);
     switch (event->type()) {
@@ -104,7 +106,7 @@ class ScrollableEventCountView : public EventCountView {
         break;
     }
   }
-
+	*/
   DISALLOW_COPY_AND_ASSIGN(ScrollableEventCountView);
 };
 
@@ -1396,7 +1398,7 @@ TEST_F(WidgetTest, WheelEventsFromScrollEventTarget) {
 }
 
 #endif  // defined(USE_AURA)
-
+/*
 // Tests that if a scroll-begin gesture is not handled, then subsequent scroll
 // events are not dispatched to any view.
 TEST_F(WidgetTest, GestureScrollEventDispatching) {
@@ -1456,7 +1458,7 @@ TEST_F(WidgetTest, GestureScrollEventDispatching) {
 
   widget->CloseNow();
 }
-
+*/
 // Tests that event-handlers installed on the RootView get triggered correctly.
 TEST_F(WidgetTest, EventHandlersOnRootView) {
   Widget* widget = CreateTopLevelNativeWidget();
@@ -1474,7 +1476,7 @@ TEST_F(WidgetTest, EventHandlersOnRootView) {
 
   widget->SetBounds(gfx::Rect(0, 0, 100, 100));
   widget->Show();
-
+	/*
   ui::TouchEvent pressed(ui::ET_TOUCH_PRESSED,
                          gfx::Point(10, 10),
                          0, 0,
@@ -1510,7 +1512,7 @@ TEST_F(WidgetTest, EventHandlersOnRootView) {
   EXPECT_EQ(1, h1.GetEventCount(ui::ET_GESTURE_END));
   EXPECT_EQ(1, view->GetEventCount(ui::ET_GESTURE_END));
   EXPECT_EQ(1, h2.GetEventCount(ui::ET_GESTURE_END));
-
+	*/
   ui::ScrollEvent scroll(ui::ET_SCROLL,
                          gfx::Point(5, 5),
                          ui::EventTimeForNow(),
@@ -1777,11 +1779,12 @@ class RootViewTestView : public View {
   virtual bool OnMousePressed(const ui::MouseEvent& event) OVERRIDE {
     return true;
   }
-
+/*
   virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE {
     if (event->type() == ui::ET_GESTURE_TAP_DOWN)
       event->SetHandled();
   }
+*/
 };
 
 // Checks if RootView::*_handler_ fields are unset when widget is hidden.
@@ -1822,7 +1825,7 @@ TEST_F(WidgetTest, MAYBE_DisableTestRootViewHandlersWhenHidden) {
   EXPECT_EQ(view, GetMouseMoveHandler(root_view));
   widget->Hide();
   EXPECT_EQ(NULL, GetMouseMoveHandler(root_view));
-
+	/*
   // Check RootView::gesture_handler_.
   widget->Show();
   EXPECT_EQ(NULL, GetGestureHandler(root_view));
@@ -1838,7 +1841,7 @@ TEST_F(WidgetTest, MAYBE_DisableTestRootViewHandlersWhenHidden) {
   EXPECT_EQ(view, GetGestureHandler(root_view));
   widget->Hide();
   EXPECT_EQ(NULL, GetGestureHandler(root_view));
-
+	*/
   widget->Close();
 }
 

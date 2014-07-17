@@ -329,7 +329,7 @@ void ScrollView::OnMouseExited(const ui::MouseEvent& event) {
   if (vert_sb_)
     vert_sb_->OnMouseExitedScrollView(event);
 }
-
+/*
 void ScrollView::OnGestureEvent(ui::GestureEvent* event) {
   // If the event happened on one of the scrollbars, then those events are
   // sent directly to the scrollbars. Otherwise, only scroll events are sent to
@@ -348,7 +348,7 @@ void ScrollView::OnGestureEvent(ui::GestureEvent* event) {
       horiz_sb_->OnGestureEvent(event);
   }
 }
-
+*/
 const char* ScrollView::GetClassName() const {
   return kViewClassName;
 }

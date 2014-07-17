@@ -12,7 +12,7 @@
 #include "base/command_line.h"
 #include "base/logging.h"
 #include "build/build_config.h"
-#include "ui/base/touch/touch_device.h"
+//#include "ui/base/touch/touch_device.h"
 #include "ui/base/ui_base_switches.h"
 #include "ui/gfx/display.h"
 #include "ui/gfx/screen.h"
@@ -38,7 +38,7 @@ namespace {
 bool ScaleFactorComparator(const ScaleFactor& lhs, const ScaleFactor& rhs){
   return GetScaleFactorScale(lhs) < GetScaleFactorScale(rhs);
 }
-
+/*
 #if defined(OS_WIN)
 // Helper function that determines whether we want to optimize the UI for touch.
 bool UseTouchOptimizedUI() {
@@ -65,7 +65,7 @@ bool UseTouchOptimizedUI() {
   return base::win::IsMetroProcess() && ui::IsTouchDevicePresent();
 }
 #endif  // defined(OS_WIN)
-
+*/
 const float kScaleFactorScales[] = {1.0f, 1.0f, 1.25f, 1.33f, 1.4f, 1.5f, 1.8f,
                                     2.0f};
 COMPILE_ASSERT(NUM_SCALE_FACTORS == arraysize(kScaleFactorScales),
@@ -142,10 +142,12 @@ std::vector<ScaleFactor>& GetSupportedScaleFactorsInternal() {
 }  // namespace
 
 DisplayLayout GetDisplayLayout() {
+/*
 #if defined(OS_WIN)
   if (UseTouchOptimizedUI())
     return LAYOUT_TOUCH;
 #endif
+*/
   return LAYOUT_DESKTOP;
 }
 

@@ -25,7 +25,7 @@
 
 using base::Time;
 using base::TimeDelta;
-/* todo(hege)
+/* 
 namespace {
 
 static const char kFallbackFormatSuffixShort[] = "}";

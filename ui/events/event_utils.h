@@ -78,7 +78,7 @@ EVENTS_EXPORT int GetChangedMouseButtonFlagsFromNative(
 // Gets the mouse wheel offsets from a native event.
 EVENTS_EXPORT gfx::Vector2d GetMouseWheelOffset(
     const base::NativeEvent& native_event);
-
+/*
 // Gets the touch id from a native event.
 EVENTS_EXPORT int GetTouchId(const base::NativeEvent& native_event);
 
@@ -95,7 +95,7 @@ EVENTS_EXPORT float GetTouchAngle(const base::NativeEvent& native_event);
 
 // Gets the force from a native_event. Normalized to be [0, 1]. Default is 0.0.
 EVENTS_EXPORT float GetTouchForce(const base::NativeEvent& native_event);
-
+*/
 // Gets the fling velocity from a native event. is_cancel is set to true if
 // this was a tap down, intended to stop an ongoing fling.
 EVENTS_EXPORT bool GetFlingData(const base::NativeEvent& native_event,
@@ -113,7 +113,7 @@ EVENTS_EXPORT bool GetScrollOffsets(const base::NativeEvent& native_event,
                                 float* x_offset_ordinal,
                                 float* y_offset_ordinal,
                                 int* finger_count);
-
+/*
 EVENTS_EXPORT bool GetGestureTimes(const base::NativeEvent& native_event,
                                double* start_time,
                                double* end_time);
@@ -128,7 +128,7 @@ EVENTS_EXPORT bool IsNaturalScrollEnabled();
 // The caller is responsible for ensuring that this is a mouse/touchpad event
 // before calling this function.
 EVENTS_EXPORT bool IsTouchpadEvent(const base::NativeEvent& event);
-
+*/
 // Returns true if event is noop.
 EVENTS_EXPORT bool IsNoopEvent(const base::NativeEvent& event);
 
@@ -138,10 +138,11 @@ EVENTS_EXPORT base::NativeEvent CreateNoopEvent();
 #if defined(OS_WIN)
 EVENTS_EXPORT int GetModifiersFromACCEL(const ACCEL& accel);
 EVENTS_EXPORT int GetModifiersFromKeyState();
-
+/*
 // Returns true if |message| identifies a mouse event that was generated as the
 // result of a touch event.
 EVENTS_EXPORT bool IsMouseEventFromTouch(UINT message);
+*/
 #endif
 
 // Returns true if default post-target handling was canceled for |event| after

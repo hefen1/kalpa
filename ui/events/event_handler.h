@@ -18,11 +18,11 @@ class CancelModeEvent;
 class Event;
 class EventDispatcher;
 class EventTarget;
-class GestureEvent;
+//class GestureEvent;
 class KeyEvent;
 class MouseEvent;
 class ScrollEvent;
-class TouchEvent;
+//class TouchEvent;
 
 // Dispatches events to appropriate targets.  The default implementations of
 // all of the specific handlers (e.g. OnKeyEvent, OnMouseEvent) do nothing.
@@ -43,9 +43,9 @@ class EVENTS_EXPORT EventHandler {
 
   virtual void OnScrollEvent(ScrollEvent* event);
 
-  virtual void OnTouchEvent(TouchEvent* event);
+  //virtual void OnTouchEvent(TouchEvent* event);
 
-  virtual void OnGestureEvent(GestureEvent* event);
+  //virtual void OnGestureEvent(GestureEvent* event);
 
   virtual void OnCancelMode(CancelModeEvent* event);
 

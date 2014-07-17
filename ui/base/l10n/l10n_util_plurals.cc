@@ -6,7 +6,7 @@
 
 #include "base/memory/scoped_ptr.h"
 #include "ui/base/l10n/l10n_util.h"
-/* todo(hege)
+/* 
 namespace l10n_util {
 
 scoped_ptr<icu::PluralRules> BuildPluralRules() {

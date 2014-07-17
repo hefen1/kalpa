@@ -116,10 +116,10 @@ View* WidgetTest::GetMousePressedHandler(internal::RootView* root_view) {
 View* WidgetTest::GetMouseMoveHandler(internal::RootView* root_view) {
   return root_view->mouse_move_handler_;
 }
-
+/*
 View* WidgetTest::GetGestureHandler(internal::RootView* root_view) {
   return root_view->gesture_handler_;
 }
-
+*/
 }  // namespace test
 }  // namespace views

@@ -27,10 +27,10 @@ void EventHandler::OnEvent(Event* event) {
     OnMouseEvent(static_cast<MouseEvent*>(event));
   else if (event->IsScrollEvent())
     OnScrollEvent(static_cast<ScrollEvent*>(event));
-  else if (event->IsTouchEvent())
-    OnTouchEvent(static_cast<TouchEvent*>(event));
-  else if (event->IsGestureEvent())
-    OnGestureEvent(static_cast<GestureEvent*>(event));
+//  else if (event->IsTouchEvent())
+//    OnTouchEvent(static_cast<TouchEvent*>(event));
+//  else if (event->IsGestureEvent())
+//    OnGestureEvent(static_cast<GestureEvent*>(event));
   else if (event->type() == ET_CANCEL_MODE)
     OnCancelMode(static_cast<CancelModeEvent*>(event));
 }
@@ -44,11 +44,11 @@ void EventHandler::OnMouseEvent(MouseEvent* event) {
 void EventHandler::OnScrollEvent(ScrollEvent* event) {
 }
 
-void EventHandler::OnTouchEvent(TouchEvent* event) {
-}
+//void EventHandler::OnTouchEvent(TouchEvent* event) {
+//}
 
-void EventHandler::OnGestureEvent(GestureEvent* event) {
-}
+//void EventHandler::OnGestureEvent(GestureEvent* event) {
+//}
 
 void EventHandler::OnCancelMode(CancelModeEvent* event) {
 }

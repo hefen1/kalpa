@@ -1051,11 +1051,11 @@ bool NativeWidgetPrivate::IsMouseButtonDown() {
 }
 
 // static
-bool NativeWidgetPrivate::IsTouchDown() {
+//bool NativeWidgetPrivate::IsTouchDown() {
   // This currently isn't necessary because we're not generating touch events on
   // windows.  When we do, this will need to be updated.
-  return false;
-}
+//  return false;
+//}
 
 }  // namespace internal
 

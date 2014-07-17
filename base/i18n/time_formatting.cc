@@ -13,7 +13,7 @@
 //#include "third_party/icu/source/i18n/unicode/smpdtfmt.h"
 
 using base::Time;
-/* todo(hege)
+/* 
 namespace {
 
 string16 TimeFormat(const icu::DateFormat* formatter,

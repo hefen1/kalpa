@@ -80,8 +80,8 @@ class EVENTS_EXPORT EventTarget : public EventHandler {
   virtual void OnKeyEvent(KeyEvent* event) OVERRIDE;
   virtual void OnMouseEvent(MouseEvent* event) OVERRIDE;
   virtual void OnScrollEvent(ScrollEvent* event) OVERRIDE;
-  virtual void OnTouchEvent(TouchEvent* event) OVERRIDE;
-  virtual void OnGestureEvent(GestureEvent* event) OVERRIDE;
+  //virtual void OnTouchEvent(TouchEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(GestureEvent* event) OVERRIDE;
 
  private:
   friend class EventDispatcher;

@@ -29,7 +29,7 @@ class VIEWS_EXPORT SlideOutView : public views::View
   virtual void OnSlideOut() = 0;
 
   // Overridden from views::View.
-  virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
 
  private:
   enum SlideDirection {

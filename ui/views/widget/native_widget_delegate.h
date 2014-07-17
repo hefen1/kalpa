@@ -18,13 +18,13 @@ class Size;
 }
 
 namespace ui {
-class GestureEvent;
+//class GestureEvent;
 class KeyEvent;
 #if defined(ENABLE_GPU)
 class Layer;
 #endif
 class MouseEvent;
-class TouchEvent;
+//class TouchEvent;
 class ScrollEvent;
 }
 
@@ -118,9 +118,9 @@ class VIEWS_EXPORT NativeWidgetDelegate {
   virtual void OnMouseEvent(ui::MouseEvent* event) = 0;
   virtual void OnMouseCaptureLost() = 0;
 
-  virtual void OnTouchEvent(ui::TouchEvent* event) = 0;
+  //virtual void OnTouchEvent(ui::TouchEvent* event) = 0;
   virtual void OnScrollEvent(ui::ScrollEvent* event) = 0;
-  virtual void OnGestureEvent(ui::GestureEvent* event) = 0;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) = 0;
 
   // Runs the specified native command. Returns true if the command is handled.
   virtual bool ExecuteCommand(int command_id) = 0;

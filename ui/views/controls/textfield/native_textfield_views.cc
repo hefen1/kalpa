@@ -107,7 +107,7 @@ bool NativeTextfieldViews::OnMousePressed(const ui::MouseEvent& event) {
   }
 
   OnAfterUserAction();
-  touch_selection_controller_.reset();
+  //touch_selection_controller_.reset();
   return true;
 }
 
@@ -159,7 +159,7 @@ void NativeTextfieldViews::OnMouseReleased(const ui::MouseEvent& event) {
   initiating_drag_ = false;
   OnAfterUserAction();
 }
-
+/*
 void NativeTextfieldViews::OnGestureEvent(ui::GestureEvent* event) {
   textfield_->OnGestureEvent(event);
   if (event->handled())
@@ -238,7 +238,7 @@ void NativeTextfieldViews::OnGestureEvent(ui::GestureEvent* event) {
   }
   PlatformGestureEventHandling(event);
 }
-
+*/
 bool NativeTextfieldViews::OnKeyPressed(const ui::KeyEvent& event) {
   // OnKeyPressed/OnKeyReleased/OnFocus/OnBlur will never be invoked on
   // NativeTextfieldViews as it will never gain focus.
@@ -364,7 +364,7 @@ void NativeTextfieldViews::OnBlur() {
 void NativeTextfieldViews::OnNativeThemeChanged(const ui::NativeTheme* theme) {
   UpdateColorsFromTheme(theme);
 }
-
+/*
 void NativeTextfieldViews::SelectRect(const gfx::Point& start,
                                       const gfx::Point& end) {
   if (GetTextInputType() == ui::TEXT_INPUT_TYPE_NONE)
@@ -421,7 +421,7 @@ void NativeTextfieldViews::OpenContextMenu(const gfx::Point& anchor) {
   touch_selection_controller_.reset();
   ShowContextMenu(anchor, ui::MENU_SOURCE_TOUCH_EDIT_MENU);
 }
-
+*/
 gfx::NativeCursor NativeTextfieldViews::GetCursor(const ui::MouseEvent& event) {
   bool in_selection = GetRenderText()->IsPointInSelection(event.location());
   bool drag_event = event.type() == ui::ET_MOUSE_DRAGGED;
@@ -597,7 +597,8 @@ void NativeTextfieldViews::UpdateHorizontalMargins() {
     return;
   gfx::Insets inset = GetInsets();
   text_border_->SetInsets(inset.top(), left, inset.bottom(), right);
-  OnBoundsChanged(GetBounds());
+  //OnBoundsChanged(GetBounds());
+  OnBoundsChanged(bounds());
 }
 
 void NativeTextfieldViews::UpdateVerticalMargins() {
@@ -606,7 +607,8 @@ void NativeTextfieldViews::UpdateVerticalMargins() {
     return;
   gfx::Insets inset = GetInsets();
   text_border_->SetInsets(top, inset.left(), bottom, inset.right());
-  OnBoundsChanged(GetBounds());
+  //OnBoundsChanged(GetBounds());
+  OnBoundsChanged(bounds());
 }
 
 void NativeTextfieldViews::UpdateVerticalAlignment() {
@@ -671,7 +673,7 @@ bool NativeTextfieldViews::HandleKeyPressed(const ui::KeyEvent& e) {
   bool handled = false;
   if (controller)
     handled = controller->HandleKeyEvent(textfield_, e);
-  touch_selection_controller_.reset();
+  //touch_selection_controller_.reset();
   return handled || HandleKeyEvent(e);
 }
 
@@ -703,7 +705,7 @@ void NativeTextfieldViews::HandleBlur() {
     RepaintCursor();
   }
 
-  touch_selection_controller_.reset();
+  //touch_selection_controller_.reset();
 
   ClearSelection();
 }
@@ -786,7 +788,7 @@ string16 NativeTextfieldViews::GetLabelForCommandId(int command_id) const {
 }
 
 void NativeTextfieldViews::ExecuteCommand(int command_id, int event_flags) {
-  touch_selection_controller_.reset();
+  //touch_selection_controller_.reset();
   if (!IsCommandIdEnabled(command_id))
     return;
 
@@ -1370,8 +1372,8 @@ void NativeTextfieldViews::OnCaretBoundsChanged() {
     textfield_->GetInputMethod()->OnCaretBoundsChanged(textfield_);
 
   // Notify selection controller
-  if (touch_selection_controller_.get())
-    touch_selection_controller_->SelectionChanged();
+  //if (touch_selection_controller_.get())
+  //  touch_selection_controller_->SelectionChanged();
 }
 
 void NativeTextfieldViews::OnBeforeUserAction() {
@@ -1494,7 +1496,7 @@ bool NativeTextfieldViews::ShouldInsertChar(char16 ch, int flags) {
   return ((ch >= 0x20 && ch < 0x7F) || ch > 0x9F) &&
       (flags & ~(ui::EF_SHIFT_DOWN | ui::EF_CAPS_LOCK_DOWN)) != ui::EF_ALT_DOWN;
 }
-
+/*
 void NativeTextfieldViews::CreateTouchSelectionControllerAndNotifyIt() {
   if (!touch_selection_controller_) {
     touch_selection_controller_.reset(
@@ -1511,7 +1513,7 @@ void NativeTextfieldViews::PlatformGestureEventHandling(
     base::win::DisplayVirtualKeyboard();
 #endif
 }
-
+*/
 void NativeTextfieldViews::RevealObscuredChar(int index,
                                               const base::TimeDelta& duration) {
   GetRenderText()->SetObscuredRevealIndex(index);

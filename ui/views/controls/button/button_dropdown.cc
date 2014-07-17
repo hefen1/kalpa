@@ -116,7 +116,7 @@ void ButtonDropDown::OnMouseExited(const ui::MouseEvent& event) {
   if (state_ != STATE_DISABLED && !InDrag() && state_ != STATE_PRESSED)
     SetState(STATE_NORMAL);
 }
-
+/*
 void ButtonDropDown::OnGestureEvent(ui::GestureEvent* event) {
   if (menu_showing_) {
     // While dropdown menu is showing the button should not handle gestures.
@@ -126,7 +126,7 @@ void ButtonDropDown::OnGestureEvent(ui::GestureEvent* event) {
 
   ImageButton::OnGestureEvent(event);
 }
-
+*/
 void ButtonDropDown::GetAccessibleState(ui::AccessibleViewState* state) {
   CustomButton::GetAccessibleState(state);
   state->role = ui::AccessibilityTypes::ROLE_BUTTONDROPDOWN;
@@ -147,8 +147,8 @@ void ButtonDropDown::ShowContextMenuForView(View* source,
 bool ButtonDropDown::ShouldEnterPushedState(const ui::Event& event) {
   // Enter PUSHED state on press with Left or Right mouse button or on taps.
   // Remain in this state while the context menu is open.
-  return event.type() == ui::ET_GESTURE_TAP ||
-         event.type() == ui::ET_GESTURE_TAP_DOWN ||
+  return //event.type() == ui::ET_GESTURE_TAP ||
+         //event.type() == ui::ET_GESTURE_TAP_DOWN ||
          (event.IsMouseEvent() && ((ui::EF_LEFT_MOUSE_BUTTON |
              ui::EF_RIGHT_MOUSE_BUTTON) & event.flags()) != 0);
 }

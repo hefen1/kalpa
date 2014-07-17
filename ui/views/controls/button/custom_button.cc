@@ -192,7 +192,7 @@ bool CustomButton::OnKeyReleased(const ui::KeyEvent& event) {
   NotifyClick(synthetic_event);
   return true;
 }
-
+/*
 void CustomButton::OnGestureEvent(ui::GestureEvent* event) {
   if (state_ == STATE_DISABLED) {
     Button::OnGestureEvent(event);
@@ -219,7 +219,7 @@ void CustomButton::OnGestureEvent(ui::GestureEvent* event) {
   if (!event->handled())
     Button::OnGestureEvent(event);
 }
-
+*/
 bool CustomButton::AcceleratorPressed(const ui::Accelerator& accelerator) {
   SetState(STATE_NORMAL);
   /*
@@ -301,8 +301,8 @@ void CustomButton::StateChanged() {
 }
 
 bool CustomButton::IsTriggerableEvent(const ui::Event& event) {
-  return event.type() == ui::ET_GESTURE_TAP_DOWN ||
-         event.type() == ui::ET_GESTURE_TAP ||
+  return //event.type() == ui::ET_GESTURE_TAP_DOWN ||
+         //event.type() == ui::ET_GESTURE_TAP ||
          (event.IsMouseEvent() &&
              (triggerable_event_flags_ & event.flags()) != 0);
 }

@@ -72,7 +72,7 @@ class LocatedEventHandlerView : public views::View {
     ProcessEventAtLocation(event.location());
     return true;
   }
-
+	/*
   virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE {
     if (event->type() == ui::ET_GESTURE_TAP ||
         event->type() == ui::ET_GESTURE_TAP_DOWN ||
@@ -81,7 +81,7 @@ class LocatedEventHandlerView : public views::View {
       event->SetHandled();
     }
   }
-
+	*/
   DISALLOW_COPY_AND_ASSIGN(LocatedEventHandlerView);
 };
 

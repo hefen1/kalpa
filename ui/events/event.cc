@@ -19,6 +19,7 @@
 #include "ui/gfx/point_conversions.h"
 #include "ui/gfx/transform.h"
 #include "ui/gfx/transform_util.h"
+#include "ui/gfx/size.h"
 
 #if defined(USE_X11)
 #include "ui/events/keycodes/keyboard_code_conversion_x.h"
@@ -70,15 +71,15 @@ std::string EventTypeName(ui::EventType type) {
     CASE_TYPE(ET_KEY_RELEASED);
     CASE_TYPE(ET_MOUSEWHEEL);
     CASE_TYPE(ET_MOUSE_CAPTURE_CHANGED);
-    CASE_TYPE(ET_TOUCH_RELEASED);
-    CASE_TYPE(ET_TOUCH_PRESSED);
-    CASE_TYPE(ET_TOUCH_MOVED);
-    CASE_TYPE(ET_TOUCH_STATIONARY);
-    CASE_TYPE(ET_TOUCH_CANCELLED);
+    //CASE_TYPE(ET_TOUCH_RELEASED);
+    //CASE_TYPE(ET_TOUCH_PRESSED);
+    //CASE_TYPE(ET_TOUCH_MOVED);
+    //CASE_TYPE(ET_TOUCH_STATIONARY);
+    //CASE_TYPE(ET_TOUCH_CANCELLED);
     CASE_TYPE(ET_DROP_TARGET_EVENT);
     CASE_TYPE(ET_TRANSLATED_KEY_PRESS);
     CASE_TYPE(ET_TRANSLATED_KEY_RELEASE);
-    CASE_TYPE(ET_GESTURE_SCROLL_BEGIN);
+    /*CASE_TYPE(ET_GESTURE_SCROLL_BEGIN);
     CASE_TYPE(ET_GESTURE_SCROLL_END);
     CASE_TYPE(ET_GESTURE_SCROLL_UPDATE);
     CASE_TYPE(ET_GESTURE_TAP);
@@ -92,7 +93,7 @@ std::string EventTypeName(ui::EventType type) {
     CASE_TYPE(ET_GESTURE_PINCH_UPDATE);
     CASE_TYPE(ET_GESTURE_LONG_PRESS);
     CASE_TYPE(ET_GESTURE_LONG_TAP);
-    CASE_TYPE(ET_GESTURE_MULTIFINGER_SWIPE);
+    CASE_TYPE(ET_GESTURE_MULTIFINGER_SWIPE);*/
     CASE_TYPE(ET_SCROLL);
     CASE_TYPE(ET_SCROLL_FLING_START);
     CASE_TYPE(ET_SCROLL_FLING_CANCEL);
@@ -450,7 +451,7 @@ void MouseWheelEvent::UpdateForRootTransform(
 
 ////////////////////////////////////////////////////////////////////////////////
 // TouchEvent
-
+/*
 TouchEvent::TouchEvent(const base::NativeEvent& native_event)
     : LocatedEvent(native_event),
       touch_id_(GetTouchId(native_event)),
@@ -516,7 +517,7 @@ void TouchEvent::UpdateForRootTransform(
   if (decomp.scale[1])
     radius_y_ *= decomp.scale[1];
 }
-
+*/
 ////////////////////////////////////////////////////////////////////////////////
 // KeyEvent
 
@@ -743,7 +744,7 @@ void ScrollEvent::Scale(const float factor) {
 
 ////////////////////////////////////////////////////////////////////////////////
 // GestureEvent
-
+/*
 GestureEvent::GestureEvent(EventType type,
                            int x,
                            int y,
@@ -771,5 +772,5 @@ int GestureEvent::GetLowestTouchId() const {
   while (!(1 << ++i & touch_ids_bitfield_));
   return i;
 }
-
+*/
 }  // namespace ui

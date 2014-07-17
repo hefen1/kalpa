@@ -846,7 +846,7 @@ void NativeWidgetAura::OnMouseEvent(ui::MouseEvent* event) {
 void NativeWidgetAura::OnScrollEvent(ui::ScrollEvent* event) {
   delegate_->OnScrollEvent(event);
 }
-
+/*
 void NativeWidgetAura::OnTouchEvent(ui::TouchEvent* event) {
   DCHECK(window_);
   DCHECK(window_->IsVisible());
@@ -858,7 +858,7 @@ void NativeWidgetAura::OnGestureEvent(ui::GestureEvent* event) {
   DCHECK(window_->IsVisible());
   delegate_->OnGestureEvent(event);
 }
-
+*/
 ////////////////////////////////////////////////////////////////////////////////
 // NativeWidgetAura, aura::client::ActivationDelegate implementation:
 

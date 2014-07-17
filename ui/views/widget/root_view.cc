@@ -69,9 +69,9 @@ RootView::RootView(Widget* widget)
       last_mouse_event_flags_(0),
       last_mouse_event_x_(-1),
       last_mouse_event_y_(-1),
-      touch_pressed_handler_(NULL),
-      gesture_handler_(NULL),
-      scroll_gesture_handler_(NULL),
+      //touch_pressed_handler_(NULL),
+      //gesture_handler_(NULL),
+      //scroll_gesture_handler_(NULL),
       focus_search_(this, false, false),
       focus_traversable_parent_(NULL),
       focus_traversable_parent_view_(NULL),
@@ -145,7 +145,7 @@ void RootView::DispatchScrollEvent(ui::ScrollEvent* event) {
   if (OnMouseWheel(wheel))
     event->SetHandled();
 }
-
+/*
 void RootView::DispatchTouchEvent(ui::TouchEvent* event) {
   // TODO: this looks all wrong. On a TOUCH_PRESSED we should figure out the
   // view and target that view with all touches with the same id until the
@@ -316,7 +316,7 @@ void RootView::DispatchGestureEvent(ui::GestureEvent* event) {
 
   gesture_handler_ = NULL;
 }
-
+*/
 // Focus -----------------------------------------------------------------------
 
 void RootView::SetFocusTraversableParent(FocusTraversable* focus_traversable) {
@@ -502,7 +502,7 @@ void RootView::OnMouseReleased(const ui::MouseEvent& event) {
 void RootView::OnMouseCaptureLost() {
   // TODO: this likely needs to reset touch handler too.
 
-  if (mouse_pressed_handler_ || gesture_handler_) {
+  if (mouse_pressed_handler_ ){//|| gesture_handler_) {
     // Synthesize a release event for UpdateCursor.
     if (mouse_pressed_handler_) {
       gfx::Point last_point(last_mouse_event_x_, last_mouse_event_y_);
@@ -514,12 +514,12 @@ void RootView::OnMouseCaptureLost() {
     // We allow the view to delete us from OnMouseCaptureLost. As such,
     // configure state such that we're done first, then call View.
     View* mouse_pressed_handler = mouse_pressed_handler_;
-    View* gesture_handler = gesture_handler_;
+    //View* gesture_handler = gesture_handler_;
     SetMouseHandler(NULL);
     if (mouse_pressed_handler)
       mouse_pressed_handler->OnMouseCaptureLost();
-    else
-      gesture_handler->OnMouseCaptureLost();
+    //else
+    //  gesture_handler->OnMouseCaptureLost();
     // WARNING: we may have been deleted.
   }
 }
@@ -594,8 +594,8 @@ void RootView::SetMouseHandler(View* new_mh) {
   // If we're clearing the mouse handler, clear explicit_mouse_handler_ as well.
   explicit_mouse_handler_ = (new_mh != NULL);
   mouse_pressed_handler_ = new_mh;
-  gesture_handler_ = new_mh;
-  scroll_gesture_handler_ = new_mh;
+ // gesture_handler_ = new_mh;
+ // scroll_gesture_handler_ = new_mh;
   drag_info_.Reset();
 }
 
@@ -623,12 +623,12 @@ void RootView::ViewHierarchyChanged(
       mouse_pressed_handler_ = NULL;
     if (mouse_move_handler_ == details.child)
       mouse_move_handler_ = NULL;
-    if (touch_pressed_handler_ == details.child)
-      touch_pressed_handler_ = NULL;
-    if (gesture_handler_ == details.child)
-      gesture_handler_ = NULL;
-    if (scroll_gesture_handler_ == details.child)
-      scroll_gesture_handler_ = NULL;
+   // if (touch_pressed_handler_ == details.child)
+   //   touch_pressed_handler_ = NULL;
+   // if (gesture_handler_ == details.child)
+   //   gesture_handler_ = NULL;
+   // if (scroll_gesture_handler_ == details.child)
+   //   scroll_gesture_handler_ = NULL;
     if (event_dispatch_target_ == details.child)
       event_dispatch_target_ = NULL;
   }
@@ -641,9 +641,9 @@ void RootView::VisibilityChanged(View* /*starting_from*/, bool is_visible) {
     // by old handlers.
     mouse_pressed_handler_ = NULL;
     mouse_move_handler_ = NULL;
-    touch_pressed_handler_ = NULL;
-    gesture_handler_ = NULL;
-    scroll_gesture_handler_ = NULL;
+    //touch_pressed_handler_ = NULL;
+    //gesture_handler_ = NULL;
+    //scroll_gesture_handler_ = NULL;
     event_dispatch_target_ = NULL;
   }
 }

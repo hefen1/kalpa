@@ -11,11 +11,11 @@
 #include "base/debug/trace_event.h"
 #include "base/win/win_util.h"
 #include "base/win/windows_version.h"
-#include "ui/base/gestures/gesture_sequence.h"
-#include "ui/base/touch/touch_enabled.h"
+//#include "ui/base/gestures/gesture_sequence.h"
+//#include "ui/base/touch/touch_enabled.h"
 #include "ui/base/win/mouse_wheel_util.h"
 #include "ui/base/win/shell.h"
-#include "ui/base/win/touch_input.h"
+//#include "ui/base/win/touch_input.h"
 #include "ui/events/event.h"
 #include "ui/events/event_utils.h"
 #include "ui/events/keycodes/keyboard_code_conversion_win.h"
@@ -392,8 +392,8 @@ HWNDMessageHandler::HWNDMessageHandler(HWNDMessageHandlerDelegate* delegate)
       waiting_for_redraw_layered_window_contents_(false),
       can_update_layered_window_(true),
       is_first_nccalc_(true),
-      autohide_factory_(this),
-      id_generator_(0) {
+      autohide_factory_(this)//,
+      /*id_generator_(0)*/ {
 }
 
 HWNDMessageHandler::~HWNDMessageHandler() {
@@ -1331,10 +1331,11 @@ LRESULT HWNDMessageHandler::OnCreate(CREATESTRUCT* create_struct) {
 
   // Get access to a modifiable copy of the system menu.
   GetSystemMenu(hwnd(), false);
-
+	/*
   if (base::win::GetVersion() >= base::win::VERSION_WIN7 &&
       ui::AreTouchEventsEnabled())
     RegisterTouchWindow(hwnd(), TWF_WANTPALM);
+  */
 
   // We need to allow the delegate to size its contents since the window may not
   // receive a size notification when its initial bounds are specified at window
@@ -1563,8 +1564,8 @@ LRESULT HWNDMessageHandler::OnMouseRange(UINT message,
   MSG msg = { hwnd(), message, w_param, l_param, GetMessageTime(),
               { GET_X_LPARAM(l_param), GET_Y_LPARAM(l_param) } };
   ui::MouseEvent event(msg);
-  if (!touch_ids_.empty() || ui::IsMouseEventFromTouch(message))
-    event.set_flags(event.flags() | ui::EF_FROM_TOUCH);
+  //if (!touch_ids_.empty() || ui::IsMouseEventFromTouch(message))
+  //  event.set_flags(event.flags() | ui::EF_FROM_TOUCH);
 
   if (!(event.flags() & ui::EF_IS_NON_CLIENT))
     delegate_->HandleTooltipMouseMove(message, w_param, l_param);
@@ -2072,7 +2073,7 @@ void HWNDMessageHandler::OnSysCommand(UINT notification_code,
 void HWNDMessageHandler::OnThemeChanged() {
   ui::NativeThemeWin::instance()->CloseHandles();
 }
-
+/*
 LRESULT HWNDMessageHandler::OnTouchEvent(UINT message,
                                          WPARAM w_param,
                                          LPARAM l_param) {
@@ -2130,7 +2131,7 @@ LRESULT HWNDMessageHandler::OnTouchEvent(UINT message,
   SetMsgHandled(FALSE);
   return 0;
 }
-
+*/
 void HWNDMessageHandler::OnWindowPosChanging(WINDOWPOS* window_pos) {
   if (ignore_window_pos_changes_) {
     // If somebody's trying to toggle our visibility, change the nonclient area,
@@ -2226,10 +2227,10 @@ void HWNDMessageHandler::OnWindowPosChanged(WINDOWPOS* window_pos) {
     delegate_->HandleVisibilityChanged(false);
   SetMsgHandled(FALSE);
 }
-
+/*
 void HWNDMessageHandler::HandleTouchEvents(const TouchEvents& touch_events) {
   for (size_t i = 0; i < touch_events.size(); ++i)
     delegate_->HandleTouchEvent(touch_events[i]);
 }
-
+*/
 }  // namespace views

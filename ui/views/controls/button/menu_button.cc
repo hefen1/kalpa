@@ -213,7 +213,7 @@ void MenuButton::OnMouseExited(const ui::MouseEvent& event) {
     SetState(STATE_NORMAL);
   }
 }
-
+/*
 void MenuButton::OnGestureEvent(ui::GestureEvent* event) {
   if (state() != STATE_DISABLED && event->type() == ui::ET_GESTURE_TAP) {
     if (Activate())
@@ -222,7 +222,7 @@ void MenuButton::OnGestureEvent(ui::GestureEvent* event) {
   }
   TextButton::OnGestureEvent(event);
 }
-
+*/
 bool MenuButton::OnKeyPressed(const ui::KeyEvent& event) {
   switch (event.key_code()) {
     case ui::VKEY_SPACE:

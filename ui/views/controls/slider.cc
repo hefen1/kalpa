@@ -290,7 +290,7 @@ bool Slider::OnKeyPressed(const ui::KeyEvent& event) {
   }
   return false;
 }
-
+/*
 void Slider::OnGestureEvent(ui::GestureEvent* event) {
   if (event->type() == ui::ET_GESTURE_SCROLL_BEGIN ||
       event->type() == ui::ET_GESTURE_TAP_DOWN) {
@@ -303,7 +303,7 @@ void Slider::OnGestureEvent(ui::GestureEvent* event) {
     event->SetHandled();
   }
 }
-
+*/
 void Slider::AnimationProgressed(const gfx::Animation* animation) {
   animating_value_ = animation->CurrentValueBetween(animating_value_, value_);
   SchedulePaint();

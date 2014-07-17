@@ -20,15 +20,15 @@ enum EventType {
   ET_KEY_RELEASED,
   ET_MOUSEWHEEL,
   ET_MOUSE_CAPTURE_CHANGED,  // Event has no location.
-  ET_TOUCH_RELEASED,
-  ET_TOUCH_PRESSED,
-  ET_TOUCH_MOVED,
-  ET_TOUCH_STATIONARY,
-  ET_TOUCH_CANCELLED,
+  //ET_TOUCH_RELEASED,
+  //ET_TOUCH_PRESSED,
+  //ET_TOUCH_MOVED,
+  //ET_TOUCH_STATIONARY,
+  //ET_TOUCH_CANCELLED,
   ET_DROP_TARGET_EVENT,
   ET_TRANSLATED_KEY_PRESS,
   ET_TRANSLATED_KEY_RELEASE,
-
+	/*
   // GestureEvent types
   ET_GESTURE_SCROLL_BEGIN,
   ET_GESTURE_SCROLL_END,
@@ -47,7 +47,7 @@ enum EventType {
   // A SWIPE gesture can happen at the end of a TAP_UP gesture if the
   // finger(s) were moving quickly before they are released.
   ET_GESTURE_MULTIFINGER_SWIPE,
-
+	*/
   // Scroll support.
   // TODO[davemoore] we need to unify these events w/ touch and gestures.
   ET_SCROLL,
@@ -88,7 +88,7 @@ enum MouseEventFlags {
   EF_IS_DOUBLE_CLICK    = 1 << 16,
   EF_IS_TRIPLE_CLICK    = 1 << 17,
   EF_IS_NON_CLIENT      = 1 << 18,
-  EF_FROM_TOUCH         = 1 << 19,  // Indicates this mouse event is generated
+  //EF_FROM_TOUCH         = 1 << 19,  // Indicates this mouse event is generated
                                     // from an unconsumed touch/gesture event.
 };
 

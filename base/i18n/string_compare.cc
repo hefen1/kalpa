@@ -6,7 +6,7 @@
 
 #include "base/logging.h"
 #include "base/strings/utf_string_conversions.h"
-/* todo(hege)
+/* 
 namespace base {
 namespace i18n {
 

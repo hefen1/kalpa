@@ -12,8 +12,8 @@ MenuSourceType GetMenuSourceTypeForEvent(const ui::Event& event) {
   ui::MenuSourceType source_type = ui::MENU_SOURCE_MOUSE;
   if (event.IsKeyEvent())
     source_type = ui::MENU_SOURCE_KEYBOARD;
-  if (event.IsTouchEvent() || event.IsGestureEvent())
-    source_type = ui::MENU_SOURCE_TOUCH;
+  //if (event.IsTouchEvent() || event.IsGestureEvent())
+  //  source_type = ui::MENU_SOURCE_TOUCH;
   return source_type;
 }
 

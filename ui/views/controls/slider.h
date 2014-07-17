@@ -91,7 +91,7 @@ class VIEWS_EXPORT Slider : public View,
   virtual void OnPaintFocusBorder(gfx::Canvas* canvas) OVERRIDE;
 
   // ui::EventHandler overrides:
-  virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
 
   // gfx::AnimationDelegate overrides:
   virtual void AnimationProgressed(const gfx::Animation* animation) OVERRIDE;

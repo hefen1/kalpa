@@ -196,7 +196,7 @@ bool BaseScrollBar::OnMouseWheel(const ui::MouseWheelEvent& event) {
   ScrollByContentsOffset(event.y_offset());
   return true;
 }
-
+/*
 void BaseScrollBar::OnGestureEvent(ui::GestureEvent* event) {
   // If a fling is in progress, then stop the fling for any incoming gesture
   // event (except for the GESTURE_END event that is generated at the end of the
@@ -251,7 +251,7 @@ void BaseScrollBar::OnGestureEvent(ui::GestureEvent* event) {
     event->SetHandled();
   }
 }
-
+*/
 ///////////////////////////////////////////////////////////////////////////////
 // BaseScrollBar, ScrollDelegate implementation:
 

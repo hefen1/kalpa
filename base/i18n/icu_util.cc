@@ -20,7 +20,7 @@
 #include "base/strings/sys_string_conversions.h"
 //#include "third_party/icu/source/common/unicode/putil.h"
 //#include "third_party/icu/source/common/unicode/udata.h"
-/* todo(hege)
+/* 
 #if defined(OS_MACOSX)
 #include "base/mac/foundation_util.h"
 #endif

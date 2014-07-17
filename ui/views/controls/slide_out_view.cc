@@ -26,7 +26,7 @@ SlideOutView::SlideOutView()
 
 SlideOutView::~SlideOutView() {
 }
-
+/*
 void SlideOutView::OnGestureEvent(ui::GestureEvent* event) {
   if (event->type() == ui::ET_SCROLL_FLING_START) {
     // The threshold for the fling velocity is computed empirically.
@@ -74,7 +74,7 @@ void SlideOutView::OnGestureEvent(ui::GestureEvent* event) {
 
   event->SetHandled();
 }
-
+*/
 void SlideOutView::RestoreVisualState() {
   if (!get_use_acceleration_when_possible())
     return;

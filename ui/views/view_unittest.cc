@@ -187,7 +187,7 @@ void ScrambleTree(views::View* view) {
     view->SetVisible(!view->visible());
 }
 #endif
-
+/*
 // Convenience to make constructing a GestureEvent simpler.
 class GestureEventForTest : public ui::GestureEvent {
  public:
@@ -199,7 +199,7 @@ class GestureEventForTest : public ui::GestureEvent {
  private:
   DISALLOW_COPY_AND_ASSIGN(GestureEventForTest);
 };
-
+*/
 }  // namespace
 
 namespace views {
@@ -234,9 +234,9 @@ class TestView : public View {
   virtual void OnMouseEntered(const ui::MouseEvent& event) OVERRIDE;
   virtual void OnMouseExited(const ui::MouseEvent& event) OVERRIDE;
 
-  virtual void OnTouchEvent(ui::TouchEvent* event) OVERRIDE;
+  //virtual void OnTouchEvent(ui::TouchEvent* event) OVERRIDE;
   // Ignores GestureEvent by default.
-  virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
 
   virtual void Paint(gfx::Canvas* canvas) OVERRIDE;
   virtual void SchedulePaintInRect(const gfx::Rect& rect) OVERRIDE;
@@ -255,7 +255,7 @@ class TestView : public View {
 
   // Painting.
   std::vector<gfx::Rect> scheduled_paint_rects_;
-
+	
   // GestureEvent
   int last_gesture_event_type_;
   bool last_gesture_event_was_handled_;
@@ -271,7 +271,7 @@ class TestView : public View {
   // Accelerators.
   std::map<ui::Accelerator, int> accelerator_count_map_;
 };
-
+/*
 // A view subclass that ignores all touch events for testing purposes.
 class TestViewIgnoreTouch : public TestView {
  public:
@@ -328,7 +328,7 @@ class TestViewIgnoreScrollGestures : public TestViewConsumeGesture {
 
   DISALLOW_COPY_AND_ASSIGN(TestViewIgnoreScrollGestures);
 };
-
+*/
 ////////////////////////////////////////////////////////////////////////////////
 // OnBoundsChanged
 ////////////////////////////////////////////////////////////////////////////////
@@ -472,7 +472,7 @@ TEST_F(ViewTest, DeleteOnPressed) {
 
   widget->CloseNow();
 }
-
+/*
 ////////////////////////////////////////////////////////////////////////////////
 // TouchEvent
 ////////////////////////////////////////////////////////////////////////////////
@@ -501,7 +501,9 @@ void TestView::OnTouchEvent(ui::TouchEvent* event) {
 
 void TestViewIgnoreTouch::OnTouchEvent(ui::TouchEvent* event) {
 }
+*/
 
+#if 0
 TEST_F(ViewTest, TouchEvent) {
   TestView* v1 = new TestView();
   v1->SetBoundsRect(gfx::Rect(0, 0, 300, 300));
@@ -666,7 +668,8 @@ TEST_F(ViewTest, GestureEvent) {
 
   widget->CloseNow();
 }
-
+#endif
+/*
 TEST_F(ViewTest, ScrollGestureEvent) {
   // Views hierarchy for non delivery of GestureEvent.
   TestView* v1 = new TestViewConsumeGesture();
@@ -758,7 +761,7 @@ TEST_F(ViewTest, ScrollGestureEvent) {
 
   widget->CloseNow();
 }
-
+*/
 ////////////////////////////////////////////////////////////////////////////////
 // Painting
 ////////////////////////////////////////////////////////////////////////////////

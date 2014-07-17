@@ -18,7 +18,7 @@
 #include "build/build_config.h"
 //#include "third_party/icu/source/common/unicode/uniset.h"
 //#include "third_party/icu/source/i18n/unicode/coll.h"
-#if 0 //todo(hege)
+#if 0 //
 namespace {
 
 class IllegalCharacters {

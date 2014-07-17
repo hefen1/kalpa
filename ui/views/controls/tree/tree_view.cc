@@ -365,14 +365,14 @@ ui::TextInputClient* TreeView::GetTextInputClient() {
     selector_.reset(new PrefixSelector(this));
   return selector_.get();
 }
-
+/*
 void TreeView::OnGestureEvent(ui::GestureEvent* event) {
   if (event->type() == ui::ET_GESTURE_TAP) {
     if (OnClickOrTap(*event))
       event->SetHandled();
   }
 }
-
+*/
 void TreeView::ShowContextMenu(const gfx::Point& p,
                                ui::MenuSourceType source_type) {
   if (!model_)
@@ -636,13 +636,13 @@ bool TreeView::OnClickOrTap(const ui::LocatedEvent& event) {
       } else if (relative_x > kArrowRegionSize) {
         SetSelectedNode(node->model_node());
         bool should_toggle = false;
-        if (event.type() == ui::ET_GESTURE_TAP) {
-          const ui::GestureEvent& gesture =
-              static_cast<const ui::GestureEvent&>(event);
-          should_toggle = gesture.details().tap_count() == 2;
-        } else {
+        //if (event.type() == ui::ET_GESTURE_TAP) {
+       //   const ui::GestureEvent& gesture =
+       //       static_cast<const ui::GestureEvent&>(event);
+       //   should_toggle = gesture.details().tap_count() == 2;
+       // } else {
           should_toggle = (event.flags() & ui::EF_IS_DOUBLE_CLICK) != 0;
-        }
+        //}
         if (should_toggle) {
           if (node->is_expanded())
             Collapse(node->model_node());

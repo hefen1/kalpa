@@ -11,7 +11,7 @@
 #include "base/logging.h"
 #include "base/time/time.h"
 #include "ui/base/dragdrop/os_exchange_data.h"
-#include "ui/base/gestures/gesture_types.h"
+//#include "ui/base/gestures/gesture_types.h"
 #include "ui/events/event_constants.h"
 #include "ui/events/keycodes/keyboard_codes.h"
 #include "ui/events/latency_info.h"
@@ -115,7 +115,7 @@ class EVENTS_EXPORT Event {
            type_ == ET_MOUSEWHEEL ||
            type_ == ET_MOUSE_CAPTURE_CHANGED;
   }
-
+	/*
   bool IsTouchEvent() const {
     return type_ == ET_TOUCH_RELEASED ||
            type_ == ET_TOUCH_PRESSED ||
@@ -154,22 +154,22 @@ class EVENTS_EXPORT Event {
     }
     return false;
   }
-
+	*/
   bool IsScrollEvent() const {
     // Flings can be GestureEvents too. EF_FROM_TOUCH determins if they're
     // Gesture or Scroll events.
     return type_ == ET_SCROLL ||
            ((type_ == ET_SCROLL_FLING_START ||
-           type_ == ET_SCROLL_FLING_CANCEL) &&
-           !(flags() & EF_FROM_TOUCH));
+           type_ == ET_SCROLL_FLING_CANCEL)/* &&
+           !(flags() & EF_FROM_TOUCH)*/);
   }
-
+	/*
   bool IsScrollGestureEvent() const {
     return type_ == ET_GESTURE_SCROLL_BEGIN ||
            type_ == ET_GESTURE_SCROLL_UPDATE ||
            type_ == ET_GESTURE_SCROLL_END;
   }
-
+	*/
   bool IsFlingScrollEvent() const {
     return type_ == ET_SCROLL_FLING_CANCEL ||
            type_ == ET_SCROLL_FLING_START;
@@ -440,7 +440,7 @@ class EVENTS_EXPORT MouseWheelEvent : public MouseEvent {
  private:
   gfx::Vector2d offset_;
 };
-
+/*
 class EVENTS_EXPORT TouchEvent : public LocatedEvent {
  public:
   explicit TouchEvent(const base::NativeEvent& native_event);
@@ -523,7 +523,7 @@ class EVENTS_EXPORT TouchEvent : public LocatedEvent {
   // Force (pressure) of the touch. Normalized to be [0, 1]. Default to be 0.0.
   float force_;
 };
-
+*/
 class EVENTS_EXPORT KeyEvent : public Event {
  public:
   KeyEvent(const base::NativeEvent& native_event, bool is_char);
@@ -666,7 +666,7 @@ class EVENTS_EXPORT ScrollEvent : public MouseEvent {
   // Number of fingers on the pad.
   int finger_count_;
 };
-
+/*
 class EVENTS_EXPORT GestureEvent : public LocatedEvent {
  public:
   GestureEvent(EventType type,
@@ -704,7 +704,7 @@ class EVENTS_EXPORT GestureEvent : public LocatedEvent {
   // but we currently don't need more than 32 touches at a time.
   const unsigned int touch_ids_bitfield_;
 };
-
+*/
 }  // namespace ui
 
 #endif  // UI_EVENTS_EVENT_H_

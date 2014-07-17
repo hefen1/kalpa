@@ -350,10 +350,10 @@ MenuRunner::RunResult MenuRunner::RunMenuAt(Widget* parent,
       case ui::MENU_SOURCE_MOUSE:
         anchor = MenuItemView::TOPLEFT;
         break;
-      case ui::MENU_SOURCE_TOUCH:
-      case ui::MENU_SOURCE_TOUCH_EDIT_MENU:
-        anchor = MenuItemView::BOTTOMCENTER;
-        break;
+      //case ui::MENU_SOURCE_TOUCH:
+      //case ui::MENU_SOURCE_TOUCH_EDIT_MENU:
+     //   anchor = MenuItemView::BOTTOMCENTER;
+     //   break;
       default:
         break;
     }

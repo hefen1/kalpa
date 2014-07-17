@@ -4,7 +4,7 @@
 
 #include "base/i18n/break_iterator.h"
 
-/* todo(hege)
+/* 
 #include "base/logging.h"
 #include "third_party/icu/source/common/unicode/ubrk.h"
 #include "third_party/icu/source/common/unicode/uchar.h"

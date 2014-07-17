@@ -129,7 +129,7 @@ void Link::GetAccessibleState(ui::AccessibleViewState* state) {
   Label::GetAccessibleState(state);
   state->role = ui::AccessibilityTypes::ROLE_LINK;
 }
-
+/*
 void Link::OnGestureEvent(ui::GestureEvent* event) {
   if (!enabled())
     return;
@@ -146,7 +146,7 @@ void Link::OnGestureEvent(ui::GestureEvent* event) {
   }
   event->SetHandled();
 }
-
+*/
 void Link::SetFont(const gfx::Font& font) {
   Label::SetFont(font);
   RecalculateFont();

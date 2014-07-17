@@ -262,7 +262,7 @@ bool SubmenuView::OnMouseWheel(const ui::MouseWheelEvent& e) {
 
   return true;
 }
-
+/*
 void SubmenuView::OnGestureEvent(ui::GestureEvent* event) {
   bool handled = true;
   switch (event->type()) {
@@ -292,7 +292,7 @@ void SubmenuView::OnGestureEvent(ui::GestureEvent* event) {
   if (handled)
     event->SetHandled();
 }
-
+*/
 bool SubmenuView::IsShowing() {
   return host_ && host_->IsMenuHostVisible();
 }

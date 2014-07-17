@@ -13,7 +13,7 @@
 #include "base/strings/utf_string_conversions.h"
 //#include "third_party/icu/source/common/unicode/ustring.h"
 //#include "third_party/icu/source/i18n/unicode/numfmt.h"
-/* todo(hege)
+/*
 namespace base {
 
 namespace {

@@ -582,7 +582,7 @@ bool MenuController::OnMouseWheel(SubmenuView* source,
   return part.submenu && part.submenu->OnMouseWheel(event);
 }
 #endif
-
+/*
 void MenuController::OnGestureEvent(SubmenuView* source,
                                     ui::GestureEvent* event) {
   MenuPart part = GetMenuPart(source, event->location());
@@ -626,7 +626,7 @@ void MenuController::OnGestureEvent(SubmenuView* source,
     return;
   part.submenu->OnGestureEvent(event);
 }
-
+*/
 bool MenuController::GetDropFormats(
       SubmenuView* source,
       int* formats,
@@ -873,8 +873,8 @@ void MenuController::SetSelectionOnPointerDown(SubmenuView* source,
 
   // When this menu is opened through a touch event, a simulated right-click
   // is sent before the menu appears.  Ignore it.
-  if ((event.flags() & ui::EF_RIGHT_MOUSE_BUTTON) &&
-      (event.flags() & ui::EF_FROM_TOUCH))
+  //if ((event.flags() & ui::EF_RIGHT_MOUSE_BUTTON) &&
+  //    (event.flags() & ui::EF_FROM_TOUCH))
     return;
 
   if (part.type == MenuPart::NONE ||
@@ -2133,10 +2133,10 @@ void MenuController::RepostEvent(SubmenuView* source,
   scoped_ptr<ui::LocatedEvent> clone;
   if (event.IsMouseEvent()) {
     clone.reset(new ui::MouseEvent(static_cast<const ui::MouseEvent&>(event)));
-  } else if (event.IsGestureEvent()) {
+  //} else if (event.IsGestureEvent()) {
     // TODO(rbyers): Gesture event repost is tricky to get right
     // crbug.com/170987.
-    return;
+    //return;
   } else {
     NOTREACHED();
     return;

@@ -47,7 +47,7 @@ class Tab : public View {
   virtual void OnMouseCaptureLost() OVERRIDE;
   virtual void OnMouseEntered(const ui::MouseEvent& event) OVERRIDE;
   virtual void OnMouseExited(const ui::MouseEvent& event) OVERRIDE;
-  virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
   virtual gfx::Size GetPreferredSize() OVERRIDE;
   virtual void Layout() OVERRIDE;
 
@@ -129,7 +129,7 @@ void Tab::OnMouseEntered(const ui::MouseEvent& event) {
 void Tab::OnMouseExited(const ui::MouseEvent& event) {
   SetState(selected() ? TAB_ACTIVE : TAB_INACTIVE);
 }
-
+/*
 void Tab::OnGestureEvent(ui::GestureEvent* event) {
   switch (event->type()) {
     case ui::ET_GESTURE_TAP_DOWN:
@@ -147,7 +147,7 @@ void Tab::OnGestureEvent(ui::GestureEvent* event) {
   }
   event->SetHandled();
 }
-
+*/
 gfx::Size Tab::GetPreferredSize() {
   gfx::Size size(preferred_title_size_);
   size.Enlarge(21, 9);

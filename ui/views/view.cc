@@ -113,12 +113,13 @@ namespace internal {
 class PostEventDispatchHandler : public ui::EventHandler {
  public:
   explicit PostEventDispatchHandler(View* owner)
-      : owner_(owner),
-        touch_dnd_enabled_(switches::IsTouchDragDropEnabled()) {
+      : owner_(owner){//,
+        //touch_dnd_enabled_(switches::IsTouchDragDropEnabled()) {
   }
   virtual ~PostEventDispatchHandler() {}
 
  private:
+	 /*
   // Overridden from ui::EventHandler:
   virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE {
     DCHECK_EQ(ui::EP_POSTTARGET, event->phase());
@@ -147,10 +148,10 @@ class PostEventDispatchHandler : public ui::EventHandler {
       owner_->ShowContextMenu(location, ui::MENU_SOURCE_TOUCH);
       event->StopPropagation();
     }
-  }
+  }*/
 
   View* owner_;
-  bool touch_dnd_enabled_;
+  //bool touch_dnd_enabled_;
 
   DISALLOW_COPY_AND_ASSIGN(PostEventDispatchHandler);
 };
@@ -1037,13 +1038,13 @@ void View::OnMouseEvent(ui::MouseEvent* event) {
 
 void View::OnScrollEvent(ui::ScrollEvent* event) {
 }
-
+/*
 void View::OnTouchEvent(ui::TouchEvent* event) {
 }
 
 void View::OnGestureEvent(ui::GestureEvent* event) {
 }
-
+*/
 ui::TextInputClient* View::GetTextInputClient() {
   return NULL;
 }

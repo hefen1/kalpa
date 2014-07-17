@@ -118,7 +118,7 @@ class VIEWS_EXPORT TreeView : public ui::TreeModelObserver,
   virtual bool AcceleratorPressed(const ui::Accelerator& accelerator) OVERRIDE;
   virtual bool OnMousePressed(const ui::MouseEvent& event) OVERRIDE;
   virtual ui::TextInputClient* GetTextInputClient() OVERRIDE;
-  virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
   virtual void ShowContextMenu(const gfx::Point& p,
                                ui::MenuSourceType source_type) OVERRIDE;
   virtual void GetAccessibleState(ui::AccessibleViewState* state) OVERRIDE;

@@ -289,7 +289,7 @@ bool Combobox::OnKeyPressed(const ui::KeyEvent& e) {
 bool Combobox::OnKeyReleased(const ui::KeyEvent& e) {
   return false;  // crbug.com/127520
 }
-
+/*
 void Combobox::OnGestureEvent(ui::GestureEvent* gesture) {
   if (gesture->type() == ui::ET_GESTURE_TAP) {
     UpdateFromModel();
@@ -299,7 +299,7 @@ void Combobox::OnGestureEvent(ui::GestureEvent* gesture) {
   }
   View::OnGestureEvent(gesture);
 }
-
+*/
 void Combobox::OnPaint(gfx::Canvas* canvas) {
   OnPaintBackground(canvas);
   PaintText(canvas);

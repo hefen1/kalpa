@@ -64,7 +64,7 @@ bool MenuHostRootView::OnMouseWheel(const ui::MouseWheelEvent& event) {
   return submenu_->OnMouseWheel(event);
 #endif
 }
-
+/*
 void MenuHostRootView::DispatchGestureEvent(ui::GestureEvent* event) {
   RootView::DispatchGestureEvent(event);
   if (event->handled())
@@ -75,7 +75,7 @@ void MenuHostRootView::DispatchGestureEvent(ui::GestureEvent* event) {
     return;
   GetMenuController()->OnGestureEvent(submenu_, event);
 }
-
+*/
 MenuController* MenuHostRootView::GetMenuController() {
   return submenu_ ? submenu_->GetMenuItem()->GetMenuController() : NULL;
 }

@@ -253,7 +253,7 @@ gfx::Vector2d GetMouseWheelOffset(const base::NativeEvent& native_event) {
   DCHECK(native_event.message == WM_MOUSEWHEEL);
   return gfx::Vector2d(0, GET_WHEEL_DELTA_WPARAM(native_event.wParam));
 }
-
+/*
 void ClearTouchIdIfReleased(const base::NativeEvent& xev) {
   NOTIMPLEMENTED();
 }
@@ -282,7 +282,7 @@ float GetTouchForce(const base::NativeEvent& native_event) {
   NOTIMPLEMENTED();
   return 0.0;
 }
-
+*/
 bool GetScrollOffsets(const base::NativeEvent& native_event,
                       float* x_offset,
                       float* y_offset,
@@ -304,7 +304,7 @@ bool GetFlingData(const base::NativeEvent& native_event,
   NOTIMPLEMENTED();
   return false;
 }
-
+/*
 bool GetGestureTimes(const base::NativeEvent& native_event,
                      double* start_time,
                      double* end_time) {
@@ -327,7 +327,7 @@ bool IsTouchpadEvent(const base::NativeEvent& event) {
   NOTIMPLEMENTED();
   return false;
 }
-
+*/
 bool IsNoopEvent(const base::NativeEvent& event) {
   return event.message == WM_USER + 310;
 }
@@ -361,12 +361,12 @@ int GetModifiersFromKeyState() {
     modifiers |= EF_ALTGR_DOWN;
   return modifiers;
 }
-
+/*
 // Windows emulates mouse messages for touch events.
 bool IsMouseEventFromTouch(UINT message) {
   return (message >= WM_MOUSEFIRST) && (message <= WM_MOUSELAST) &&
       (GetMessageExtraInfo() & MOUSEEVENTF_FROMTOUCH) ==
       MOUSEEVENTF_FROMTOUCH;
 }
-
+*/
 }  // namespace ui

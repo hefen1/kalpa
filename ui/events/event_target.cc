@@ -73,7 +73,7 @@ void EventTarget::OnScrollEvent(ScrollEvent* event) {
   if (target_handler_)
     target_handler_->OnScrollEvent(event);
 }
-
+/*
 void EventTarget::OnTouchEvent(TouchEvent* event) {
   CHECK_EQ(this, event->target());
   if (target_handler_)
@@ -85,7 +85,7 @@ void EventTarget::OnGestureEvent(GestureEvent* event) {
   if (target_handler_)
     target_handler_->OnGestureEvent(event);
 }
-
+*/
 void EventTarget::GetPreTargetHandlers(EventHandlerList* list) {
   EventTarget* target = this;
   while (target) {

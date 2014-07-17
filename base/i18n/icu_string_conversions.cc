@@ -16,7 +16,7 @@
 //#include "third_party/icu/source/common/unicode/ucnv_err.h"
 //#include "third_party/icu/source/common/unicode/unorm.h"
 //#include "third_party/icu/source/common/unicode/ustring.h"
-/* todo(hege)
+/* 
 namespace base {
 
 namespace {

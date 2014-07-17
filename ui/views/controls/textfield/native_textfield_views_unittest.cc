@@ -95,7 +95,7 @@ class GetTextHelper {
 
   DISALLOW_COPY_AND_ASSIGN(GetTextHelper);
 };
-
+/*
 // Convenience to make constructing a GestureEvent simpler.
 class GestureEventForTest : public ui::GestureEvent {
  public:
@@ -107,7 +107,7 @@ class GestureEventForTest : public ui::GestureEvent {
  private:
   DISALLOW_COPY_AND_ASSIGN(GestureEventForTest);
 };
-
+*/
 }  // namespace
 
 namespace views {
@@ -209,11 +209,11 @@ class NativeTextfieldViewsTest : public ViewsTestBase,
     textfield_view_->UpdateContextMenu();
     return textfield_view_->context_menu_contents_.get();
   }
-
+	/*
   ui::TouchSelectionController* GetTouchSelectionController() {
     return textfield_view_->touch_selection_controller_.get();
   }
-
+	*/
  protected:
   void SendKeyEvent(ui::KeyboardCode key_code,
                     bool alt,
@@ -1880,7 +1880,7 @@ TEST_F(NativeTextfieldViewsTest, TouchSelectionAndDraggingTest) {
   EXPECT_FALSE(GetTouchSelectionController());
 }
 #endif
-
+/*
 // Long_Press gesture in NativeTextfieldViews can initiate a drag and drop now.
 TEST_F(NativeTextfieldViewsTest, TestLongPressInitiatesDragDrop) {
   InitTextfield(Textfield::STYLE_DEFAULT);
@@ -1901,7 +1901,7 @@ TEST_F(NativeTextfieldViewsTest, TestLongPressInitiatesDragDrop) {
   EXPECT_TRUE(textfield_view_->CanStartDragForView(NULL,
       kStringPoint, kStringPoint));
 }
-
+*/
 TEST_F(NativeTextfieldViewsTest, GetTextfieldBaseline_FontFallbackTest) {
 #if defined(OS_WIN)
   // This test fails on some versions of Windows because two different strings

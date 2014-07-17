@@ -125,7 +125,7 @@ void OverlayScrollBar::OnMouseEnteredScrollView(const ui::MouseEvent& event) {
 void OverlayScrollBar::OnMouseExitedScrollView(const ui::MouseEvent& event) {
   animation_.Hide();
 }
-
+/*
 void OverlayScrollBar::OnGestureEvent(ui::GestureEvent* event) {
   switch (event->type()) {
     case ui::ET_GESTURE_SCROLL_BEGIN:
@@ -141,7 +141,7 @@ void OverlayScrollBar::OnGestureEvent(ui::GestureEvent* event) {
   }
   BaseScrollBar::OnGestureEvent(event);
 }
-
+*/
 gfx::Size OverlayScrollBar::GetPreferredSize() {
   return gfx::Size();
 }

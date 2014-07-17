@@ -10,7 +10,7 @@
 #include "base/timer/timer.h"
 #include "ui/base/ime/text_input_client.h"
 #include "ui/base/models/simple_menu_model.h"
-#include "ui/base/touch/touch_editing_controller.h"
+//#include "ui/base/touch/touch_editing_controller.h"
 #include "ui/events/event_constants.h"
 #include "ui/gfx/font.h"
 #include "ui/views/border.h"
@@ -43,7 +43,8 @@ class MenuRunner;
 // Once completed, this will replace Textfield, NativeTextfieldWin and
 // NativeTextfieldGtk.
 class VIEWS_EXPORT NativeTextfieldViews : public View,
-                                          public ui::TouchEditable,
+                                          //public ui::TouchEditable,
+																					public ui::SimpleMenuModel::Delegate,
                                           public ContextMenuController,
                                           public DragController,
                                           public NativeTextfieldWrapper,
@@ -63,7 +64,7 @@ class VIEWS_EXPORT NativeTextfieldViews : public View,
   virtual bool OnMousePressed(const ui::MouseEvent& event) OVERRIDE;
   virtual bool OnMouseDragged(const ui::MouseEvent& event) OVERRIDE;
   virtual void OnMouseReleased(const ui::MouseEvent& event) OVERRIDE;
-  virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
+  //virtual void OnGestureEvent(ui::GestureEvent* event) OVERRIDE;
   virtual bool OnKeyPressed(const ui::KeyEvent& event) OVERRIDE;
   virtual bool GetDropFormats(
       int* formats,
@@ -78,7 +79,7 @@ class VIEWS_EXPORT NativeTextfieldViews : public View,
   virtual void OnFocus() OVERRIDE;
   virtual void OnBlur() OVERRIDE;
   virtual void OnNativeThemeChanged(const ui::NativeTheme* theme) OVERRIDE;
-
+	/*
   // ui::TouchEditable overrides:
   virtual void SelectRect(const gfx::Point& start,
                           const gfx::Point& end) OVERRIDE;
@@ -90,7 +91,7 @@ class VIEWS_EXPORT NativeTextfieldViews : public View,
   virtual void ConvertPointFromScreen(gfx::Point* point) OVERRIDE;
   virtual bool DrawsHandles() OVERRIDE;
   virtual void OpenContextMenu(const gfx::Point& anchor) OVERRIDE;
-
+	*/
   // ContextMenuController overrides:
   virtual void ShowContextMenuForView(View* source,
                                       const gfx::Point& point,
@@ -285,10 +286,10 @@ class VIEWS_EXPORT NativeTextfieldViews : public View,
   // modified character, i.e., modifiers took effect when generating this char.
   static bool ShouldInsertChar(char16 ch, int flags);
 
-  void CreateTouchSelectionControllerAndNotifyIt();
+  //void CreateTouchSelectionControllerAndNotifyIt();
 
   // Platform specific gesture event handling.
-  void PlatformGestureEventHandling(const ui::GestureEvent* event);
+  //void PlatformGestureEventHandling(const ui::GestureEvent* event);
 
   // Reveals the obscured char at |index| for the given |duration|. If |index|
   // is -1, existing revealed index will be cleared.
@@ -333,7 +334,7 @@ class VIEWS_EXPORT NativeTextfieldViews : public View,
   scoped_ptr<views::MenuModelAdapter> context_menu_delegate_;
   scoped_ptr<views::MenuRunner> context_menu_runner_;
 
-  scoped_ptr<ui::TouchSelectionController> touch_selection_controller_;
+  //scoped_ptr<ui::TouchSelectionController> touch_selection_controller_;
 
   // A timer to control the duration of showing the last typed char in
   // obscured text. When the timer is running, the last typed char is shown

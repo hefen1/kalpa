@@ -184,7 +184,7 @@ Widget::Widget()
       native_widget_initialized_(false),
       native_widget_destroyed_(false),
       is_mouse_button_pressed_(false),
-      is_touch_down_(false),
+      //is_touch_down_(false),
       last_mouse_event_was_move_(false),
       auto_release_capture_(true),
       root_layers_dirty_(false),
@@ -920,8 +920,8 @@ NativeWidget* Widget::native_widget() {
 void Widget::SetCapture(View* view) {
   if (internal::NativeWidgetPrivate::IsMouseButtonDown())
     is_mouse_button_pressed_ = true;
-  if (internal::NativeWidgetPrivate::IsTouchDown())
-    is_touch_down_ = true;
+  //if (internal::NativeWidgetPrivate::IsTouchDown())
+  //  is_touch_down_ = true;
   root_view_->SetMouseHandler(view);
   if (!native_widget_->HasCapture())
     native_widget_->SetCapture();
@@ -1213,25 +1213,25 @@ void Widget::OnMouseEvent(ui::MouseEvent* event) {
 }
 
 void Widget::OnMouseCaptureLost() {
-  if (is_mouse_button_pressed_ || is_touch_down_) {
+  if (is_mouse_button_pressed_){// || is_touch_down_) {
     View* root_view = GetRootView();
     if (root_view)
       root_view->OnMouseCaptureLost();
   }
-  is_touch_down_ = false;
+  //is_touch_down_ = false;
   is_mouse_button_pressed_ = false;
 }
-
+/*
 void Widget::OnTouchEvent(ui::TouchEvent* event) {
   static_cast<internal::RootView*>(GetRootView())->
       DispatchTouchEvent(event);
 }
-
+*/
 void Widget::OnScrollEvent(ui::ScrollEvent* event) {
   static_cast<internal::RootView*>(GetRootView())->
       DispatchScrollEvent(event);
 }
-
+/*
 void Widget::OnGestureEvent(ui::GestureEvent* event) {
   switch (event->type()) {
     case ui::ET_GESTURE_TAP_DOWN:
@@ -1254,7 +1254,7 @@ void Widget::OnGestureEvent(ui::GestureEvent* event) {
   }
   static_cast<internal::RootView*>(GetRootView())->DispatchGestureEvent(event);
 }
-
+*/
 bool Widget::ExecuteCommand(int command_id) {
   return widget_delegate_->ExecuteWindowsCommand(command_id);
 }

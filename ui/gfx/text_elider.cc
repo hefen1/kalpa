@@ -23,7 +23,7 @@
 #include "base/strings/utf_string_conversions.h"
 #include "ui/net/escape.h"
 #include "ui/net/net_util.h"
-#include "ui/net/registry_controlled_domains/registry_controlled_domain.h"
+//#include "ui/net/registry_controlled_domains/registry_controlled_domain.h"
 #include "third_party/icu/source/common/unicode/rbbi.h"
 #include "third_party/icu/source/common/unicode/uloc.h"
 #include "ui/gfx/font_list.h"
@@ -256,11 +256,12 @@ string16 ElideUrl(const GURL& url,
   string16 url_host = UTF8ToUTF16(url.host());
 
   // Get domain and registry information from the URL.
-  string16 url_domain = UTF8ToUTF16(
-      net::registry_controlled_domains::GetDomainAndRegistry(
-          url, net::registry_controlled_domains::EXCLUDE_PRIVATE_REGISTRIES));
-  if (url_domain.empty())
-    url_domain = url_host;
+  // todo(hege)
+  //string16 url_domain = UTF8ToUTF16(
+  //    net::registry_controlled_domains::GetDomainAndRegistry(
+  //        url, net::registry_controlled_domains::EXCLUDE_PRIVATE_REGISTRIES));
+  //if (url_domain.empty())
+  string16  url_domain = url_host;
 
   // Add port if required.
   if (!url.port().empty()) {

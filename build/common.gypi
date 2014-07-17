@@ -952,7 +952,7 @@
     #  'win_use_allocator_shim': 0,
     #  'win_release_RuntimeLibrary': 2
     # to ~/.gyp/include.gypi, gclient runhooks --force, and do a release build.
-    'win_use_allocator_shim%': 1, # 1 = shim allocator via libcmt; 0 = msvcrt
+    'win_use_allocator_shim%': 0, # 1 = shim allocator via libcmt; 0 = msvcrt
 
     # TODO(bradnelson): eliminate this when possible.
     # To allow local gyp files to prevent release.vsprops from being included.

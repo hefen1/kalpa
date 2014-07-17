@@ -621,8 +621,8 @@
         'net/escape.h',
         'net/net_util.cc',
         'net/net_util.h',
-        'net/registry_controlled_domains/registry_controlled_domain.cc',
-        'net/registry_controlled_domains/registry_controlled_domain.h',        
+        #'net/registry_controlled_domains/registry_controlled_domain.cc',
+        #'net/registry_controlled_domains/registry_controlled_domain.h',        
       ],
       'target_conditions': [
         ['OS == "ios"', {

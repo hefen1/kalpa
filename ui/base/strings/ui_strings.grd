@@ -14,7 +14,7 @@ need to be translated for each locale.-->
     which is specified at build time. -->
     <output filename="grit/ui_strings.h" type="rc_header">
       <emit emit_type='prepend'></emit>
-    </output>
+    </output><!--
     <output filename="ui_strings_am.pak" type="data_package" lang="am" />
     <output filename="ui_strings_ar.pak" type="data_package" lang="ar" />
     <if expr="pp_ifdef('use_third_party_translations')">
@@ -36,14 +36,13 @@ need to be translated for each locale.-->
     <if expr="pp_ifdef('use_third_party_translations')">
       <output filename="ui_strings_en-AU.pak" type="data_package" lang="en-AU" />
     </if>
-    <output filename="ui_strings_en-GB.pak" type="data_package" lang="en-GB" />
-    <output filename="ui_strings_en-US.pak" type="data_package" lang="en" />
+    <output filename="ui_strings_en-GB.pak" type="data_package" lang="en-GB" />-->
+    <output filename="ui_strings_en-US.pak" type="data_package" lang="en" /><!--
     <if expr="pp_ifdef('use_third_party_translations')">
       <output filename="ui_strings_eo.pak" type="data_package" lang="eo" />
     </if>
     <output filename="ui_strings_es.pak" type="data_package" lang="es" />
     <if expr="is_ios">
-      <!-- iOS uses es-MX for es-419 -->
       <output filename="ui_strings_es-MX.pak" type="data_package" lang="es-419" />
     </if>
     <if expr="not is_ios">
@@ -53,8 +52,8 @@ need to be translated for each locale.-->
     <if expr="pp_ifdef('use_third_party_translations')">
       <output filename="ui_strings_eu.pak" type="data_package" lang="eu" />
     </if>
-    <output filename="ui_strings_fa.pak" type="data_package" lang="fa" />
-    <output filename="ui_strings_fake-bidi.pak" type="data_package" lang="fake-bidi" />
+    <output filename="ui_strings_fa.pak" type="data_package" lang="fa" />-->
+    <output filename="ui_strings_fake-bidi.pak" type="data_package" lang="fake-bidi" /><!--
     <output filename="ui_strings_fi.pak" type="data_package" lang="fi" />
     <output filename="ui_strings_fil.pak" type="data_package" lang="fil" />
     <output filename="ui_strings_fr.pak" type="data_package" lang="fr" />
@@ -88,12 +87,9 @@ need to be translated for each locale.-->
     <output filename="ui_strings_mr.pak" type="data_package" lang="mr" />
     <output filename="ui_strings_ms.pak" type="data_package" lang="ms" />
     <output filename="ui_strings_nl.pak" type="data_package" lang="nl" />
-    <!-- The translation console uses 'no' for Norwegian Bokmål. It should
-         be 'nb'. -->
     <output filename="ui_strings_nb.pak" type="data_package" lang="no" />
     <output filename="ui_strings_pl.pak" type="data_package" lang="pl" />
     <if expr="is_ios">
-      <!-- iOS uses pt for pt-BR -->
       <output filename="ui_strings_pt.pak" type="data_package" lang="pt-BR" />
     </if>
     <if expr="not is_ios">
@@ -115,11 +111,11 @@ need to be translated for each locale.-->
       <output filename="ui_strings_ug.pak" type="data_package" lang="ug" />
     </if>
     <output filename="ui_strings_uk.pak" type="data_package" lang="uk" />
-    <output filename="ui_strings_vi.pak" type="data_package" lang="vi" />
+    <output filename="ui_strings_vi.pak" type="data_package" lang="vi" />-->
     <output filename="ui_strings_zh-CN.pak" type="data_package" lang="zh-CN" />
     <output filename="ui_strings_zh-TW.pak" type="data_package" lang="zh-TW" />
   </outputs>
-  <translations>
+  <translations><!--
     <file path="ui_strings_am.xtb" lang="am" />
     <file path="ui_strings_ar.xtb" lang="ar" />
     <if expr="pp_ifdef('use_third_party_translations')">
@@ -168,7 +164,6 @@ need to be translated for each locale.-->
     </if>
     <file path="ui_strings_id.xtb" lang="id" />
     <file path="ui_strings_it.xtb" lang="it" />
-    <!-- The translation console uses 'iw' for Hebrew, but we use 'he'. -->
     <file path="ui_strings_iw.xtb" lang="he" />
     <file path="ui_strings_ja.xtb" lang="ja" />
     <if expr="pp_ifdef('use_third_party_translations')">
@@ -205,7 +200,7 @@ need to be translated for each locale.-->
       <file path="../../../third_party/launchpad_translations/ui_strings_ug.xtb" lang="ug" />
     </if>
     <file path="ui_strings_uk.xtb" lang="uk" />
-    <file path="ui_strings_vi.xtb" lang="vi" />
+    <file path="ui_strings_vi.xtb" lang="vi" />-->
     <file path="ui_strings_zh-CN.xtb" lang="zh-CN" />
     <file path="ui_strings_zh-TW.xtb" lang="zh-TW" />
   </translations>

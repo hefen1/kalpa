@@ -1,0 +1,164 @@
+9.13
+=====
+加入gdihandle泄漏检测，监视了bitmap/dc/font/rgn/pen/brush
+原理: hook了分配和释放函数，并记录每次分配的调用栈，如果泄漏总算
+到100个，泄漏第一名超过五分之一，就在第一名的调用栈上生存一个dump=
+
+7.24
+=====
+加入注入崩溃，先选择进程
+
+6.30
+=====
+加入gdihandle泄漏检测，只监视了bitmap
+原理: hook了分配和释放函数，并记录每次分配的调用栈，如果泄漏总算
+到500个，泄漏第一名超过三分之一，就在第一名的调用栈上崩溃掉=
+
+5.6
+=====
+1.进程状态面板
+2.抓多进程dump
+3.调试多进程，second异常自动抓dump
+4.解析dump文件
+
+02.27
+======
+1.准备启用vss（虚拟卷席筒）来做冷启动速度测试
+profile.exe-->run_in_snapshot[_x64|_xp]?.exe-->run_with_dll.exe-->chrome.exe+profiler.dll
+   |                                                                            |
+   |---------------------------------ipc----------------------------------------|
+
+12.11
+======
+加入降权 提权运行功能，检测到：
+1.普通用户进程，提权后（--elevated+runas），直接创建极速浏览器进程，渲染进程无法启动（热）
+2.普通用户进程，提权后（--elevated+runas），降权创建极速浏览器进程，渲染进程可以启动（低）
+<==是因为新加入的memory_watcher.dll依赖渝detoured.dll找不到造成子进程无法启动,:-)加入sandbox_policy.cc
+3.加入测试：受限的job启动主进程，让子进程无法脱离job导致页面无法渲染；使用wmi启动副本主进程
+
+9.4
+======
+1.没有mount时候不关闭explorer
+2.计算load和checksign时候，如果是p盘就先unmount然后mount
+3.导出全局变量时候设置符号路径
+
+9.1
+====== http://www.mt-bbs.com/thread-101044-1-1.html
+
+pre_db7c_visitedfid=88; 
+pre_db7c_sina_bind_142478=1424078117; 
+pre_db7c_ulastactivity=9d5diX64gOJ6PXomkIouHMwWMeT9Un2mz1aydXg027iQtI6bfvhG; 
+pre_db7c_lastvisit=1314869625; 
+PHPSESSID=e50991328d7c
+
+1.全局变量优化（减少std::string全局变量，移除没必要的全局变量如chromie里面） 
+[chromeie干掉了17个,chrome.dll干掉了4个,libjingle的const里面有452个全局变量需要处理
+\src\third_party\libjingle\source\talk\p2p\base\constants.cc
+\src\third_party\libjingle\source\talk\xmpp\constants.cc]
+
+2.代码布局优化（syzggy）
+[暂时没看到什么效果-可能是机器太快采集的数据不好,见8.30更新说明]
+
+3.图片资源优化 (png资源有损压缩和解码优化，可以减少1M的体积) **
+[http://src.chromium.org/viewvc/chrome?view=rev&revision=96786
+http://codereview.chromium.org/7638001]
+
+4.起始页本地化（hao.360.cn）
+[html5本地缓存manifest,记得修改type]
+
+5.减少或者延迟loadlib，如gdiplus wininet urlmon等，chromeie引入了一大批dll
+干掉了7个dll
+5.1.chrome.exe
+netapi32.dll
+wininet.dll
+
+5.2.chrome.dll
+netapi32.dll
+wininet.dll
+urlmon.dll
+gdiplus.dll
+360dl.dll
+
+5.3.outputdebugstring
+(干掉了一百多个)
+
+5.4 多次loadlibrary调查
+5.4.1 base::getfileversionsize导致loadlibrary
+5.4.2 renderer->getplugin是个同步ipc，到主进程去加载所有的npapi
+
+6.延迟创建非重要服务和子线程、子进程，如升级（扩展、历史记录、书签、同步待考证）
+（延迟可以理解为：1、框架界面显示出来后，2、起始页标签页显示出来后）
+[不好搞]
+
+7.界面重绘优化（减少重绘、改进绘制逻辑如locationbar、searchbox）\
+[不好搞]
+
+***周五的提速讨论会还提到几点：
+ 
+8- 合并I/O读写。不用fread，用CreateFile读写。
+
+9- 优化icudt.dll。合并资源文件。 **
+
+10- 360卫士预热/预加载。 **
+
+11- 研究360其它产品对极速的影响：360卫士，杀毒，上网保护。**
+
+12- 去掉在主线程上加的I/O操作。
+ 
+其他：
+ 
+13- 研究资源占用。**
+
+14- 提高关闭速度。**
+[http://bbs.dingdi.com/forum-4-1.html，里面的帖子打开4个，关闭浏览器窗口要几秒]
+
+8.30
+======
+[http://src.chromium.org/viewvc/chrome/trunk/src/chrome/chrome_dll_syzygy.gypi?view=markup&pathrev=95620]
+1. 获取syzygy，在附件里面
+***工具包
+msdia90.dll
+call_trace_control.exe
+call_trace.dll
+instrument.exe
+relink.exe
+reorder.exe
+
+***准备
+首先将chrome.dll改名为chrome0.dll chrome_dll.pdb改名为chrome0.pdb
+（注意编译chrome.dll时候，把linker-->advanced-->profile改成YES；将签名验证注释掉，在base\*\signlib.c里面）
+下面得出的chrome1.dll chrome1.pdb就是我们要的
+可以比较之后的chrome.exe的pagefault是否好一些了
+
+***步骤
+1.instrument.exe --input-dll=chrome0.dll --output-dll=chrome.dll
+2.call_trace_control.exe start
+3.运行chrome.exe，然后关掉
+4.call_trace_control.exe stop
+5.reorder.exe --instrumented-dll=chrome.dll --output-file=reordered_chrome.txt call_trace.etl kernel.etl
+6.relink.exe --input-dll=chrome0.dll --output-dll=chrome1.dll --order-file=reordered_chrome.txt --no-metadata
+
+***后续
+对dev_release做优化后，没发现多少变化，1140毫秒变成了1126毫秒。
+听说，有人用过后提升了35%。
+
+8.29
+======
+1.增加单进程的功能
+2.增加提权的功能
+3.增加测试冷启动速度的功能，使用签过名的filedisk v15驱动以支持64位win7
+4.增加判断启动命令行禁止从网络运行
+
+todo
+======
+1.停驱动再启驱动，在win7下有时候有问题；现在是不停驱动了
+
+8.26
+======
+1.增加导出全局变量的功能
+2.增加测试chrome.dll加载时间的功能
+3.增加打印进程所有的dll的功能，在profiler.dll注入后初始化后
+
+8.1
+======
+1.实现基本功能，注入profiler.dll到chrome.exe

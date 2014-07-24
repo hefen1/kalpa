@@ -14,6 +14,7 @@
         '../skia/skia.gyp:*',
         '../ui/ui.gyp:*',
         '../ui/views/views.gyp:*',
+        '../tools/profiler/profiler.gyp:*',
       ],
     }, # target_name: All
   ],

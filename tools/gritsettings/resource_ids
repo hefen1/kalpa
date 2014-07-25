@@ -17,10 +17,10 @@
   "SRCDIR": "../..",
 
   "ui/resources/ui_unscaled_resources.grd": {
-    "includes": [100],
+    "includes": [1000],
   },
   "ui/resources/ui_resources.grd": {
-    "structures": [200],
+    "structures": [2000],
   },
   "ui/base/strings/app_locale_settings.grd": {
     "messages": [3000],
